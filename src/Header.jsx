@@ -50,7 +50,7 @@ const Header = () => {
             <Typography variant="h4" className={classes.t}>T</Typography>
             <SlowMotionVideoIcon className={classes.albumIcon} />
           </div>
-          <Typography variant="h7" className={classes.subtitle}>
+          <Typography variant="subtitle2" className={classes.subtitle}>
             send a designed song to someone you like
           </Typography>
         </Container>

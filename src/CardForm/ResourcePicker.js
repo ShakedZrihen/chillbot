@@ -8,31 +8,30 @@ import { Typography } from "@material-ui/core";
 
 const ResourcePicker = (props) => {
   const { title, resources, allowBlank } = props;
-  const [selected, select] = useState(0);
   const classes = useStyles();
 
   const handleChange = (event, newSelected) => {
     console.log("select:", newSelected);
-    select(newSelected);
+    props.setValue(newSelected);
   };
 
   return (
     <div className={classes.backgroundContainer}>
       <Typography>{title}</Typography>
       <ToggleButtonGroup
-        value={selected}
+        value={props.value}
         exclusive
         onChange={handleChange}
         aria-label="text alignment"
         className={classes.resourceContainer}
       >
         {allowBlank && (
-          <ToggleButton value={0}>
+          <ToggleButton value={""}>
             <div className={classes.image} />
           </ToggleButton>
         )}
-        {resources.map((resource, i) => (
-          <ToggleButton value={i + +allowBlank}>
+        {resources.map((resource) => (
+          <ToggleButton value={resource} key={resource}>
             <img src={resource} className={classes.image} />
           </ToggleButton>
         ))}

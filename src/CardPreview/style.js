@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { COLORS } from "../theme";
 
 export default makeStyles((theme) => ({
   card: {
@@ -7,15 +8,19 @@ export default makeStyles((theme) => ({
     textAlign: "center",
   },
   cardText: {
-    color: "#428C7F",
+    color: COLORS.PRIMERY,
+    maxWidth: 370,
+    wordBreak: "break-all",
+    whiteSpace: "pre-wrap",
+    margin: "0 auto",
   },
   cardContainer: {
     border: "15px solid transparent",
-    borderImage:
-      "url(https://www.kudoboard.com/images/lines-background.png) 100 repeat",
   },
-   media: {
-    height: 400,
-    width: 400,
+  media: {
+    width: 300,
+    height: 300,
+    margin: "60px auto 18px auto",
+    backgroundSize: "contain",
   },
 }));

@@ -1,15 +1,21 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { COLORS } from "./theme";
 
 export default makeStyles((theme) => ({
+  pageTitle: {
+    color: COLORS.PRIMERY,
+    margin: '20px auto',
+    textAlign: "center",
+  },
   title: {
     flexGrow: 1,
-    color: "#2A3858",
+    color: COLORS.SECONDARY,
   },
   container: {
     margin: "3% auto",
   },
   multilineColor: {
-    color: "#2A3858",
+    color: COLORS.SECONDARY,
   },
   card: {
     minWidth: 400,
@@ -27,7 +33,7 @@ export default makeStyles((theme) => ({
     width: 400,
   },
   cardText: {
-    color: "#428C7F",
+    color: COLORS.PRIMERY,
   },
   cardContainer: {
     border: "15px solid transparent",
@@ -35,7 +41,13 @@ export default makeStyles((theme) => ({
       "url(https://www.kudoboard.com/images/lines-background.png) 100 repeat",
   },
   sendButton: {
-    margin: '16px auto',
-    width: 600
+    margin: "16px auto",
+    width: "100%",
+    backgroundColor: COLORS.PRIMERY,
+    color: COLORS.OFFWHITE,
+    "&:hover": {
+      backgroundColor: COLORS.PRIMARY_SHADE,
+      color: COLORS.OFFWHITE,
+    },
   },
 }));

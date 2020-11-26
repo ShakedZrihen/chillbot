@@ -1,25 +1,73 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import useStyles from "./style.js";
-import Typography from "@material-ui/core/Typography";
 import ResourcePicker from "./ResourcePicker";
-import GIFs from "../resources/gifs";
-import Frames from "../resources/frames";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
-const CardForm = () => {
+const CardForm = (props) => {
+  const {
+    title,
+    image,
+    musicLink,
+    description,
+    frame,
+    gifs,
+    frames,
+    setTitle,
+    setImage,
+    setMusicLink,
+    setDescription,
+    setFrame,
+  } = props;
+
   const classes = useStyles();
+
+  const handleDescriptionChane = (event) => {
+    const newDescription = event.target.value;
+    if (newDescription.length <= 65) {
+      setDescription(newDescription);
+    }
+  };
+
+  const handleTitleChane = (event) => {
+    const newTitle = event.target.value;
+    if (newTitle.length <= 25) {
+      setTitle(newTitle);
+    }
+  };
 
   return (
     <div className={classes.flex}>
-      <Typography variant="h4" className={classes.title}>
-        Some title!
-      </Typography>
+      <div className={classes.mailContainer}>
+        <TextField
+          required
+          id="email-required"
+          placeholder="send to"
+          className={classes.mailTextbox}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccountCircle />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <TextField
+          disabled
+          id="email"
+          value="@cisco.com"
+          className={classes.mailTextbox}
+        />
+      </div>
+
       <TextField
-        required
-        id="email-required"
+        id="title"
         className={classes.textbox}
         color="secondary"
-        label="Who do you want to surprise"
+        label="Enter some short title to the card"
+        value={title}
+        onChange={handleTitleChane}
       />
       <TextField
         id="standard-multiline-static"
@@ -29,14 +77,20 @@ const CardForm = () => {
         rows={4}
         className={`${classes.textbox} ${classes.multiTextBox}`}
         color="secondary"
+        value={description}
+        onChange={handleDescriptionChane}
       />
       <ResourcePicker
         title="Choose a Frame"
-        resources={Frames}
+        resources={frames}
         allowBlank={true}
+        value={frame}
+        setValue={setFrame}
       />
       <TextField
         required
+        rowsMax={2}
+        multiline={true}
         id="email-required"
         className={classes.textbox}
         color="secondary"
@@ -44,10 +98,11 @@ const CardForm = () => {
       />
       <ResourcePicker
         title="Choose a GIF"
-        resources={GIFs}
+        resources={gifs}
         allowBlank={false}
+        value={image}
+        setValue={setImage}
       />
-
     </div>
   );
 };

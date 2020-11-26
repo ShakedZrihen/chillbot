@@ -1,17 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
-
-const COLORS = {
-  PRIMERY: "#428C7F",
-  SECONDARY: "#2A3858",
-  OFFWHITE: "#F2F2F2",
-};
+import { COLORS } from "../theme";
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    color: COLORS.PRIMERY,
-  },
   textbox: {
-    width: "415px",
+    width: 415,
     marginTop: 20,
   },
   flex: {
@@ -21,6 +13,15 @@ const useStyles = makeStyles((theme) => ({
   image: {
     width: 80,
     height: 80,
+  },
+  mailTextbox: {
+    width: 207,
+    marginTop: 20,
+    marginRight: 2
+  },
+  mailContainer: {
+    display: "flex",
+    flexFlow: "row",
   },
   backgroundContainer: {
     marginTop: 16,
@@ -37,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
   resourceContainer: {
     display: "inline-block !important",
     width: 430,
-    overflowY: 'auto',
-    height: 130
+    overflowY: "auto",
+    height: 130,
   },
 }));
 
