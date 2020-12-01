@@ -76,7 +76,7 @@ const CardForm = () => {
         <div>
           <div className="fieldContainer">
             <label htmlFor="email" className="textboxLabel">
-              Send a SongHug for
+              Send a SongHug for (email)
             </label>
             <TextField
               id="email"
@@ -88,7 +88,7 @@ const CardForm = () => {
           </div>
           <div className="fieldContainer">
             <label htmlFor="youtubeLink" className="textboxLabel">
-              Past YouTube Link here
+              Paste YouTube Link here
             </label>
             <TextField
               id="youtube"
