@@ -58,7 +58,10 @@ const buildCard = (title, image, youtubeLink, description) => {
   const descriptionBlock = { ...DESCRIPTION_BLOCK, text: description };
   return {
     ...BASE_CARD,
-    body: [titleBlock, imageBlock, descriptionBlock, EXPLAINATION_BLOCK],
+    content: {
+      ...BASE_CARD.content,
+      body: [titleBlock, imageBlock, descriptionBlock, EXPLAINATION_BLOCK],
+    },
   };
 };
 

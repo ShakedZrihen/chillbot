@@ -16,8 +16,9 @@ const ResourcePicker = (props) => {
     <div className="flexCol">
       <label className="textboxLabel">{title}</label>
       <div className="resourceContainer">
-        {resources.map((resource) => (
+        {resources.map((resource, i) => (
           <img
+            key={i}
             src={resource}
             className={clsx("resource", {
               selected: resource == props.value,
