@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap");
+
+body {
+  font-weight: 500;
+  font-family: "Rubik", sans-serif !important;
+  height: 100%;
+  width: 100%;
+  background-color: #121213;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-image: url("./resources/bgPattern.svg");
+  background-size: cover;
+  opacity: 1;
+}
+
+.frame {
+  position: relative;
+  margin: 0 8px;
+}
