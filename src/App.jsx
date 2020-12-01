@@ -3,11 +3,10 @@ import Header from "./Header";
 import { Container } from "@material-ui/core";
 import CardForm from "./CardForm/CardForm";
 import useStyles from "./style";
-import CardPreview from "./CardPreview/CardPreview";
-import Button from "@material-ui/core/Button";
 import GIFs from "./resources/gifs";
 import Frames from "./resources/frames";
-import Typography from "@material-ui/core/Typography";
+import clsx from 'clsx';
+import "./style.scss";
 
 const App = () => {
   const classes = useStyles();
@@ -17,18 +16,15 @@ const App = () => {
   const [description, setDescription] = useState("");
   const [frame, setFrame] = useState("");
 
-
-  const handleSend = () => {
-    
-  }
+  const handleSend = () => {};
 
   return (
-    <div>
-      <Header />
-      <Container className={classes.container} maxWidth="md">
-        <Typography variant="h4" className={classes.pageTitle}>
-          Design your own song card!
-        </Typography>
+    <div className="frame">
+      <Container
+        className={clsx(classes.container, "songHugContainer")}
+        maxWidth="xl"
+      >
+        <Header />
         <div className={classes.contentContainer}>
           <CardForm
             title={title}
@@ -44,19 +40,7 @@ const App = () => {
             gifs={GIFs}
             frames={Frames}
           />
-          <div>
-            <CardPreview
-              title={title}
-              image={image}
-              musicLink={musicLink}
-              description={description}
-              frame={frame}
-            />
-          </div>
         </div>
-        <Button variant="contained" className={classes.sendButton}>
-          SEND
-        </Button>
       </Container>
     </div>
   );

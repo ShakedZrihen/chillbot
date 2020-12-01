@@ -1,9 +1,7 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import useStyles from "./style.js";
 import ResourcePicker from "./ResourcePicker";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import "./style.scss";
 
 const CardForm = (props) => {
   const {
@@ -21,8 +19,6 @@ const CardForm = (props) => {
     setFrame,
   } = props;
 
-  const classes = useStyles();
-
   const handleDescriptionChane = (event) => {
     const newDescription = event.target.value;
     if (newDescription.length <= 65) {
@@ -30,79 +26,55 @@ const CardForm = (props) => {
     }
   };
 
-  const handleTitleChane = (event) => {
-    const newTitle = event.target.value;
-    if (newTitle.length <= 25) {
-      setTitle(newTitle);
-    }
-  };
-
   return (
-    <div className={classes.flex}>
-      <div className={classes.mailContainer}>
-        <TextField
-          required
-          id="email-required"
-          placeholder="send to"
-          className={classes.mailTextbox}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <AccountCircle />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          disabled
-          id="email"
-          value="@cisco.com"
-          className={classes.mailTextbox}
-        />
-      </div>
+    <div>
+      <div className="flex spaceBetween">
+        <div>
+          <div className="fieldContainer">
+            <label htmlFor="email" className="textboxLabel">
+              Send a SongHug for
+            </label>
+            <TextField id="email" variant="outlined" className="textbox mail" />
+          </div>
+          <div className="fieldContainer">
+            <label htmlFor="youtubeLink" className="textboxLabel">
+              Past YouTube Link here
+            </label>
+            <TextField
+              id="youtube"
+              variant="outlined"
+              className="textbox"
+              multiline
+              rows={1}
+            />
+          </div>
+          <div className="fieldContainer">
+            <label htmlFor="message" className="textboxLabel">
+              Add Message
+            </label>
+            <TextField
+              multiline
+              id="dscription"
+              variant="outlined"
+              className="textbox"
+              value={description}
+              onChange={handleDescriptionChane}
+              rows={4}
+            />
+          </div>
+        </div>
 
-      <TextField
-        id="title"
-        className={classes.textbox}
-        color="secondary"
-        label="Enter some short title to the card"
-        value={title}
-        onChange={handleTitleChane}
-      />
-      <TextField
-        id="standard-multiline-static"
-        placeholder="Add a personal message"
-        multiline
-        variant="outlined"
-        rows={4}
-        className={`${classes.textbox} ${classes.multiTextBox}`}
-        color="secondary"
-        value={description}
-        onChange={handleDescriptionChane}
-      />
-      <ResourcePicker
-        title="Choose a Frame"
-        resources={frames}
-        allowBlank={true}
-        value={frame}
-        setValue={setFrame}
-      />
-      <TextField
-        required
-        rowsMax={2}
-        multiline={true}
-        id="email-required"
-        className={classes.textbox}
-        color="secondary"
-        label="Enter youtube link"
-      />
-      <ResourcePicker
-        title="Choose a GIF"
-        resources={gifs}
-        allowBlank={false}
-        value={image}
-        setValue={setImage}
-      />
+        <div className="resourcePickerContainer">
+          <ResourcePicker
+            title="Choose a GIF"
+            resources={gifs}
+            allowBlank={false}
+            value={image}
+            setValue={setImage}
+          />
+        </div>
+      </div>
+      <button className="sendButton">Send SongHug</button>
     </div>
   );
 };
