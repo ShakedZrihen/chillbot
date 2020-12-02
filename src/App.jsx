@@ -1,12 +1,13 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import SendSongPage from "./SendSongPage";
 import SongHugPage from "./SongHugPage";
+import { HOST } from "./consts";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route path="/sendsong">
           <SendSongPage />
@@ -18,7 +19,7 @@ const App = () => {
           <MainPage />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
