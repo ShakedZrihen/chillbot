@@ -8,6 +8,7 @@ import generateMessage from "../resources/botMessage";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {VALIDATION_ERRORS,VALIDATION_PASSED} from './consts';
 import clsx from "clsx";
+import { Link } from "react-router-dom";
 // import { BOT_TOKEN } from "../consts";
 
 import "./style.scss";
@@ -166,9 +167,11 @@ const CardForm = () => {
       {loading ? (
         <CircularProgress disableShrink className="spinner" />
       ) : (
-        <Button className={clsx("sendButton")} onClick={handleSend}>
-          Send SongHug
-        </Button>
+        <Link to={`/songHug?name=${email}&displayLink=${musicLink}&sendback=ekohavi@cisco.com`}>
+          <Button className={clsx("sendButton")} onClick={handleSend}>
+            Send SongHug
+          </Button>
+      </Link>
       )}
     </div>
   );
