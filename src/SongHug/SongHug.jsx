@@ -1,5 +1,6 @@
 import React from "react";
 import ReactPlayer from "react-player";
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
 import "./SongHug.scss";
@@ -11,7 +12,9 @@ const SongHug = (props) => {
     },
   };
 
-  const handleSend = () => {};
+  const handleSend = (email) => {
+    console.log(email);
+  };
 
   return (
     <div className="songHugContainer">
@@ -23,9 +26,11 @@ const SongHug = (props) => {
       <div className="description">
         {props.name} sent you a <span className="songhug">SongHug!</span>
       </div>
-      <Button className="sendButton" onClick={handleSend}>
-        Send SongHug Back!
-      </Button>
+      <Link to="/sendSong">
+        <Button className="sendButton" onClick={() => handleSend(props.sendback)}>
+          Send SongHug Back!
+        </Button>
+      </Link>
     </div>
   );
 };

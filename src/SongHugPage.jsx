@@ -25,7 +25,7 @@ const SongHugPage = () => {
         className={clsx(classes.container, "songHugContainer")}
         maxWidth="xl"
       >
-        <SongHug name={query.get("name")} displayLink={query.get("displayLink")} />
+        <SongHug name={query.get("name")} displayLink={query.get("displayLink")} sendback={query.get("sendback")} />
       </Container>
     </div>
   );
