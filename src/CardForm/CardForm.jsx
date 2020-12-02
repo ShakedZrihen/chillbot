@@ -9,6 +9,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { VALIDATION_ERRORS, VALIDATION_PASSED } from "./consts";
 import clsx from "clsx";
 import { BOT_TOKEN, HOST } from "../consts";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 import "./style.scss";
 
@@ -25,6 +27,11 @@ const CardForm = (props) => {
   const isEmailError = emailError !== VALIDATION_PASSED;
   const [youtubeError, setYoutubeErrorMsg] = useState(VALIDATION_PASSED);
   const isYoutubeError = youtubeError !== VALIDATION_PASSED;
+  const [showToast, setShowToast] = useState(false);
+
+  const Alert = (props) => {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  };
 
   const handleSend = async () => {
     setLoading(true);
@@ -67,7 +74,7 @@ const CardForm = (props) => {
     const card = buildCard(title, image, formattedLink, description);
     const message = generateMessage(card, email);
 
-    fetch("https://webexapis.com/v1/messages", {
+    await fetch("https://webexapis.com/v1/messages", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${BOT_TOKEN}`,
@@ -77,6 +84,8 @@ const CardForm = (props) => {
     })
       .catch((e) => console.log(e))
       .then(() => setLoading(false));
+
+    setShowToast(true);
   };
 
   const handleDescriptionChane = (event) => {
@@ -188,6 +197,15 @@ const CardForm = (props) => {
           Send SongHug
         </Button>
       )}
+      <Snackbar
+        open={showToast}
+        autoHideDuration={6000}
+        onClose={() => setShowToast(false)}
+      >
+        <Alert onClose={() => setShowToast(false)} severity="success">
+          SongHug On his way!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
