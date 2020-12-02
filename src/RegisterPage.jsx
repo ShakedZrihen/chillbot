@@ -22,7 +22,7 @@ const RegisterPage = () => {
   }, []);
 
   const handleContinue = (event) => {
-    localStorage.setItem("currentUser", event.target.value);
+    localStorage.setItem("currentUser", email);
     history.push({
       pathname: "/sendsong",
     });
