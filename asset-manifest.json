@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/chillbot/static/css/main.977ebcb6.chunk.css",
-    "main.js": "/chillbot/static/js/main.46f92ba6.chunk.js",
-    "main.js.map": "/chillbot/static/js/main.46f92ba6.chunk.js.map",
+    "main.js": "/chillbot/static/js/main.29e26c7c.chunk.js",
+    "main.js.map": "/chillbot/static/js/main.29e26c7c.chunk.js.map",
     "runtime-main.js": "/chillbot/static/js/runtime-main.f76726f9.js",
     "runtime-main.js.map": "/chillbot/static/js/runtime-main.f76726f9.js.map",
     "static/js/2.e58da023.chunk.js": "/chillbot/static/js/2.e58da023.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.f76726f9.js",
     "static/js/2.e58da023.chunk.js",
     "static/css/main.977ebcb6.chunk.css",
-    "static/js/main.46f92ba6.chunk.js"
+    "static/js/main.29e26c7c.chunk.js"
   ]
 }
