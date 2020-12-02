@@ -5,7 +5,7 @@ export default [
   "https://media3.giphy.com/media/jUgXFVAyaXbDNg6hcd/giphy.gif",
   "https://i.pinimg.com/originals/59/a5/f0/59a5f025e75fe29104bd9597f5f7b0f1.gif",
   "https://i.pinimg.com/originals/e7/ab/1e/e7ab1ede1eea99b1de9a8f6eaf0582a9.gif",
-  "https://media.giphy.com/media/fjxeswpTKg3Uy2INQx/giphy.gif",
+  "https://media.giphy.com/media/dJ936uvjIVO9ybI2ci/giphy.gif",
   "https://media3.giphy.com/media/ZFo9Jf12rYxWwr1mFd/source.gif",
 ];
 
