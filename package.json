@@ -16,6 +16,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "clsx": "^1.1.1",
+    "gh-pages": "^3.1.0",
     "node-sass": "4.14.1",
     "query-string": "^6.13.7",
     "react": "latest",
