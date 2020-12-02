@@ -7,10 +7,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/sendSong">
+        <Route path="/sendsong">
           <SendSongPage />
         </Route>
-        <Route path="/songHug">
+        <Route path="/songhug">
           <SongHugPage />
         </Route>
       </Switch>
