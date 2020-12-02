@@ -10,10 +10,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+//Make Someone Happy!
+
+const Header = (props) => {
+  const {title} = props;
   const classes = useStyles();
 
-  return <p className={classes.title}>Make Someone Happy!</p>;
+  return <p className={classes.title}>{title}</p>;
 };
 
 export default Header;

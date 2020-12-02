@@ -19,6 +19,7 @@ const CardForm = (props) => {
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [currentUser] = useState(localStorage.getItem("currentItem"));
 
   const [emailError, setEmailErrorMsg] = useState(VALIDATION_PASSED);
   const isEmailError = emailError !== VALIDATION_PASSED;
@@ -38,6 +39,20 @@ const CardForm = (props) => {
       .then((res) => res.items[0].nickName)
       .catch(() => email);
 
+    const sender = await fetch(
+      `https://webexapis.com/v1/people?email=${currentUser}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${BOT_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => res.items[0].nickName)
+      .catch(() => currentUser);
+
     if (!image || !email || !musicLink) {
       setError("Some field is missing!");
       setLoading(false);
@@ -46,7 +61,7 @@ const CardForm = (props) => {
 
     const formattedLink =
       HOST +
-      `/songHug?receiver=${email}&displayLink=${musicLink}&sender=ekohavi@cisco.com`;
+      `/songHug?receiver=${email}&displayLink=${musicLink}&sender=${sender}&senderMail=${currentUser}`;
     console.log("formattedLink", formattedLink);
     const title = `Hi ${name}!`;
     const card = buildCard(title, image, formattedLink, description);
