@@ -6,24 +6,23 @@ import Button from "@material-ui/core/Button";
 import buildCard from "../resources/baseCard";
 import generateMessage from "../resources/botMessage";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { VALIDATION_ERRORS, VALIDATION_PASSED } from './consts';
+import { VALIDATION_ERRORS, VALIDATION_PASSED } from "./consts";
 import clsx from "clsx";
-import { Link } from "react-router-dom";
-// import { BOT_TOKEN } from "../consts";
+import { BOT_TOKEN, HOST } from "../consts";
 
 import "./style.scss";
 
 const CardForm = (props) => {
-  const [ image, setImage ] = useState(GIFs[0]);
-  const [ musicLink, setMusicLink ] = useState("");
-  const [ email, setEmail ] = useState(props.email);
-  const [ description, setDescription ] = useState("");
-  const [ error, setError ] = useState("");
-  const [ loading, setLoading ] = useState(false);
+  const [image, setImage] = useState(GIFs[0]);
+  const [musicLink, setMusicLink] = useState("");
+  const [email, setEmail] = useState(props.email);
+  const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const [ emailError, setEmailErrorMsg ] = useState(VALIDATION_PASSED);
+  const [emailError, setEmailErrorMsg] = useState(VALIDATION_PASSED);
   const isEmailError = emailError !== VALIDATION_PASSED;
-  const [ youtubeError, setYoutubeErrorMsg ] = useState(VALIDATION_PASSED);
+  const [youtubeError, setYoutubeErrorMsg] = useState(VALIDATION_PASSED);
   const isYoutubeError = youtubeError !== VALIDATION_PASSED;
 
   const handleSend = async () => {
@@ -45,14 +44,17 @@ const CardForm = (props) => {
       return;
     }
 
+    const formattedLink =
+      HOST +
+      `/songHug?receiver=${email}&displayLink=${musicLink}&sender=ekohavi@cisco.com`;
     const title = `Hi ${name}!`;
-    const card = buildCard(title, image, musicLink, description);
+    const card = buildCard(title, image, formattedLink, description);
     const message = generateMessage(card, email);
 
     fetch("https://webexapis.com/v1/messages", {
       method: "POST",
       headers: {
-        // Authorization: `Bearer ${BOT_TOKEN}`,
+        Authorization: `Bearer ${BOT_TOKEN}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(message),
@@ -73,7 +75,7 @@ const CardForm = (props) => {
     setMusicLink(musicLink);
 
     if (musicLink && musicLink.trim().length > 0) {
-      if(musicLink.indexOf('youtube.com/watch')<=0){
+      if (musicLink.indexOf("youtube.com/watch") <= 0) {
         setYoutubeErrorMsg(VALIDATION_ERRORS.YOUTUBE.NOT_VALID);
         return false;
       }
@@ -90,7 +92,7 @@ const CardForm = (props) => {
     setEmail(emailValue);
 
     if (emailValue && emailValue.trim().length > 0) {
-      if(emailValue.indexOf('cisco.com')<=0){
+      if (emailValue.indexOf("cisco.com") <= 0) {
         setEmailErrorMsg(VALIDATION_ERRORS.EMAIL.NOT_VALID);
         return false;
       }
@@ -103,7 +105,7 @@ const CardForm = (props) => {
   };
 
   return (
-    <div className='cardFromContainer'>
+    <div className="cardFromContainer">
       <div className="flex spaceBetween">
         <div>
           <div className="fieldContainer">
@@ -113,7 +115,7 @@ const CardForm = (props) => {
             <TextField
               id="outlined-error-helper-text"
               variant="outlined"
-              className={`textbox email ${isEmailError ? 'error': ''}`}
+              className={`textbox email ${isEmailError ? "error" : ""}`}
               value={email}
               onChange={handleEmailChange}
               helperText={emailError}
@@ -127,7 +129,7 @@ const CardForm = (props) => {
             <TextField
               id="outlined-error-helper-text"
               variant="outlined"
-              className={`textbox ${isYoutubeError ? 'error': ''}`}
+              className={`textbox ${isYoutubeError ? "error" : ""}`}
               multiline
               rows={1}
               value={musicLink}
@@ -163,15 +165,12 @@ const CardForm = (props) => {
         </div>
       </div>
 
-
       {loading ? (
         <CircularProgress disableShrink className="spinner" />
       ) : (
-        <Link to={`/songHug?receiver=${email}&displayLink=${musicLink}&sender=ekohavi@cisco.com`}>
-          <Button className={clsx("sendButton")} onClick={handleSend}>
-            Send SongHug
-          </Button>
-      </Link>
+        <Button className={clsx("sendButton")} onClick={handleSend}>
+          Send SongHug
+        </Button>
       )}
     </div>
   );
