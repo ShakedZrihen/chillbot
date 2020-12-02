@@ -28,7 +28,7 @@ const SongHugPage = () => {
           receiver={query.get("receiver")}
           displayLink={query.get("displayLink")}
           sender={query.get("sender")}
-          sendermail={query.get("sendermail")} />
+          senderMail={query.get("senderMail")} />
       </Container>
     </div>
   );
