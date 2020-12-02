@@ -1,94 +1,95 @@
 @import "../style.scss";
 
-.textbox {
-  background: #ffffff;
-  border: 1px solid #c4c4c4;
-  box-sizing: border-box;
-  border-radius: 10px;
-  .MuiOutlinedInput-input,
-  .MuiOutlinedInput-multiline {
-    padding: 10px !important;
+.cardFromContainer {
+  .textbox {
+    background: #ffffff;
+    border: 1px solid #c4c4c4;
+    box-sizing: border-box;
+    border-radius: 10px;
+    .MuiOutlinedInput-input,
+    .MuiOutlinedInput-multiline {
+      padding: 10px !important;
+    }
+  }
+
+  .email {
+    height: 40px;
+  }
+
+  .youtube {
+    input {
+      height: 80px;
+    }
+  }
+
+  .fieldContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+    width: 569px;
+  }
+
+  .resource {
+    width: 139px;
+    height: 152px;
+    margin: 0 15px 15px 0;
+    padding: 30px 22px;
+    background: #ffffff;
+    border: 1px solid #c4c4c4;
+    box-sizing: border-box;
+    border-radius: 20px;
+  }
+
+  .selected {
+    border: 5px solid #ddff57;
+  }
+
+  .resourceContainer {
+    display: inline-block !important;
+    width: 616px;
+    overflow-y: auto;
+  }
+
+  .resourcePickerContainer {
+    margin-left: 87px;
+  }
+
+  .sendButton,
+  .MuiButton-root {
+    color: #ddff57 !important;
+    font-family: "Rubik" !important;
+    font-size: 25px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 30px !important;
+    letter-spacing: 0em !important;
+    text-align: center !important;
+
+    background: #000000 !important;
+    width: 370px !important;
+    height: 71px !important;
+    box-shadow: 0px 4px 20px 5px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 50px !important;
+
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: 15px !important;
+    margin-top: 60px !important;
+
+    text-transform: none !important;
+  }
+
+  .disabled {
+    button[disabled] {
+      color: #c6c6c6 !important;
+    }
+  }
+
+  .spinner {
+    position: fixed;
+    display: block !important;
+    margin-left: auto;
+    margin-right: 192px;
+    margin-top: 60px;
   }
 }
-
-.email {
-  height: 40px;
-}
-
-.youtube {
-  input {
-    height: 80px;
-  }
-}
-
-.fieldContainer {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 22px;
-  width: 569px;
-}
-
-.resource {
-  width: 139px;
-  height: 152px;
-  margin: 0 15px 15px 0;
-  padding: 30px 22px;
-  background: #ffffff;
-  border: 1px solid #c4c4c4;
-  box-sizing: border-box;
-  border-radius: 20px;
-}
-
-.selected {
-  border: 5px solid #ddff57;
-}
-
-.resourceContainer {
-  display: inline-block !important;
-  width: 616px;
-  overflow-y: auto;
-}
-
-.resourcePickerContainer {
-  margin-left: 87px;
-}
-
-.sendButton,
-.MuiButton-root {
-  color: #ddff57 !important;
-  font-family: "Rubik" !important;
-  font-size: 25px !important;
-  font-style: normal !important;
-  font-weight: 400 !important;
-  line-height: 30px !important;
-  letter-spacing: 0em !important;
-  text-align: center !important;
-
-  background: #000000 !important;
-  width: 370px !important;
-  height: 71px !important;
-  box-shadow: 0px 4px 20px 5px rgba(0, 0, 0, 0.25) !important;
-  border-radius: 50px !important;
-
-  display: block !important;
-  margin-left: auto !important;
-  margin-right: 15px !important;
-  margin-top: 60px !important;
-
-  text-transform: none !important;
-}
-
-.disabled {
-  button[disabled] {
-    color: #c6c6c6 !important;
-  }
-}
-
-.spinner {
-  position: fixed;
-  display: block !important;
-  margin-left: auto;
-  margin-right: 192px;
-  margin-top: 60px;
-}
-

@@ -71,7 +71,7 @@ const CardForm = () => {
   };
 
   return (
-    <div>
+    <div className='cardFromContainer'>
       <div className="flex spaceBetween">
         <div>
           <div className="fieldContainer">

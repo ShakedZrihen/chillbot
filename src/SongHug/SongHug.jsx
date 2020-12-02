@@ -20,6 +20,7 @@ const SongHug = () => {
       <ReactPlayer
         url="https://www.youtube.com/watch?v=Okq8xHrIZ8I"
         config={config}
+        playing={true}
       />
       <div className="description">
         Shaked send you a <span className="songhug">SongHug!</span>
