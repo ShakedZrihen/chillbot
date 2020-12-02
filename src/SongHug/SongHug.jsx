@@ -14,15 +14,12 @@ const SongHug = (props) => {
 
   const handleSend = (email) => {
     console.log(email);
+    localStorage.setItem("currentUser", props.receiver);
   };
 
   return (
     <div className="songHugContainer">
-      <ReactPlayer
-        url={props.displayLink}
-        config={config}
-        playing={true}
-      />
+      <ReactPlayer url={props.displayLink} config={config} playing={true} />
       <div className="description">
         {props.sender} sent you a <span className="songhug">SongHug!</span>
       </div>
