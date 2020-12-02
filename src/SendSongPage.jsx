@@ -14,7 +14,7 @@ const SendSongPage = () => {
   const history = useHistory();
   const [currentUser] = useState(localStorage.getItem("currentUser"));
   console.log("currentUser", currentUser);
-  if (currentUser == null || currentUser == undefined) {
+  if (!currentUser) {
     console.log("here");
     history.push({
       pathname: "/register",
