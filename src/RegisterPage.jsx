@@ -6,6 +6,7 @@ import clsx from "clsx";
 import "./RegisterPage.scss";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
 
 const RegisterPage = () => {
   const classes = useStyles();
