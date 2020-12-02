@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import buildCard from "../resources/baseCard";
 import generateMessage from "../resources/botMessage";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import {VALIDATION_ERRORS,VALIDATION_PASSED} from './consts';
+import { VALIDATION_ERRORS, VALIDATION_PASSED } from './consts';
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 // import { BOT_TOKEN } from "../consts";
@@ -14,16 +14,16 @@ import { Link } from "react-router-dom";
 import "./style.scss";
 
 const CardForm = () => {
-  const [image, setImage] = useState(GIFs[0]);
-  const [musicLink, setMusicLink] = useState("");
-  const [email, setEmail] = useState("");
-  const [description, setDescription] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [ image, setImage ] = useState(GIFs[0]);
+  const [ musicLink, setMusicLink ] = useState("");
+  const [ email, setEmail ] = useState("");
+  const [ description, setDescription ] = useState("");
+  const [ error, setError ] = useState("");
+  const [ loading, setLoading ] = useState(false);
 
-  const [emailError, setEmailErrorMsg] = useState(VALIDATION_PASSED);
+  const [ emailError, setEmailErrorMsg ] = useState(VALIDATION_PASSED);
   const isEmailError = emailError !== VALIDATION_PASSED;
-  const [youtubeError, setYoutubeErrorMsg] = useState(VALIDATION_PASSED);
+  const [ youtubeError, setYoutubeErrorMsg ] = useState(VALIDATION_PASSED);
   const isYoutubeError = youtubeError !== VALIDATION_PASSED;
 
   const handleSend = async () => {
@@ -167,7 +167,7 @@ const CardForm = () => {
       {loading ? (
         <CircularProgress disableShrink className="spinner" />
       ) : (
-        <Link to={`/songHug?name=${email}&displayLink=${musicLink}&sendback=ekohavi@cisco.com`}>
+        <Link to={`/songHug?receiver=${email}&displayLink=${musicLink}&sender=ekohavi@cisco.com`}>
           <Button className={clsx("sendButton")} onClick={handleSend}>
             Send SongHug
           </Button>
