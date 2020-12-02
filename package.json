@@ -14,6 +14,7 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "clsx": "^1.1.1",
     "node-sass": "4.14.1",
+    "query-string": "^6.13.7",
     "react": "latest",
     "react-dom": "latest",
     "react-player": "^2.7.0",
