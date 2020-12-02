@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactPlayer from "react-player";
-import PlayIcon from "../resources/playIcon.svg";
 import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 import "./SongHug.scss";
 
@@ -23,7 +21,7 @@ const SongHug = () => {
         playing={true}
       />
       <div className="description">
-        Shaked send you a <span className="songhug">SongHug!</span>
+        Shaked sent you a <span className="songhug">SongHug!</span>
       </div>
       <Button className="sendButton" onClick={handleSend}>
         Send SongHug Back!
