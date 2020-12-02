@@ -13,10 +13,10 @@ import { Link } from "react-router-dom";
 
 import "./style.scss";
 
-const CardForm = () => {
+const CardForm = (props) => {
   const [ image, setImage ] = useState(GIFs[0]);
   const [ musicLink, setMusicLink ] = useState("");
-  const [ email, setEmail ] = useState("");
+  const [ email, setEmail ] = useState(props.email);
   const [ description, setDescription ] = useState("");
   const [ error, setError ] = useState("");
   const [ loading, setLoading ] = useState(false);

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Container } from "@material-ui/core";
 import useStyles from "./style";
 import clsx from "clsx";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./SongHugPage.scss";
 import SongHug from "./SongHug/SongHug";
 
