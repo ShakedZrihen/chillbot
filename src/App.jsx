@@ -14,10 +14,10 @@ const App = () => {
         <Route path="/songhug">
           <SongHugPage />
         </Route>
+        <Route path="/">
+          <MainPage />
+        </Route>
       </Switch>
-      <Route path="/">
-        <MainPage />
-      </Route>
     </BrowserRouter>
   );
 };
