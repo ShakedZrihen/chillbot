@@ -24,10 +24,10 @@ const SongHug = (props) => {
         playing={true}
       />
       <div className="description">
-        {props.name} sent you a <span className="songhug">SongHug!</span>
+        {props.receiver} sent you a <span className="songhug">SongHug!</span>
       </div>
-      <Link to={`/sendSong?email=${props.sendback}`}>
-        <Button className="sendButton" onClick={() => handleSend(props.sendback)}>
+      <Link to={`/sendSong?email=${props.sender}`}>
+        <Button className="sendButton" onClick={() => handleSend(props.sender)}>
           Send SongHug Back!
         </Button>
       </Link>

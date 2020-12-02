@@ -7,7 +7,6 @@ import "./SongHugPage.scss";
 import SongHug from "./SongHug/SongHug";
 
 const SongHugPage = () => {
-  const { name, displayLink } = useParams();
   const query = new URLSearchParams(useLocation().search)
   const classes = useStyles();
 
@@ -25,7 +24,7 @@ const SongHugPage = () => {
         className={clsx(classes.container, "songHugContainer")}
         maxWidth="xl"
       >
-        <SongHug name={query.get("name")} displayLink={query.get("displayLink")} sendback={query.get("sendback")} />
+        <SongHug receiver={query.get("receiver")} displayLink={query.get("displayLink")} sender={query.get("sender")} />
       </Container>
     </div>
   );
