@@ -29,7 +29,7 @@ const SongHug = (props) => {
             className="sendButton sendBack"
             onClick={() => handleSend(props.sender)}
           >
-            Send {props.sender} a SongHug Back!
+            Send SongHug Back!
           </Button>
         </Link>
         <Link to={`/sendSong`}>
