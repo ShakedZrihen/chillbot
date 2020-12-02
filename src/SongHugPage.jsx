@@ -24,7 +24,11 @@ const SongHugPage = () => {
         className={clsx(classes.container, "songHugContainer")}
         maxWidth="xl"
       >
-        <SongHug receiver={query.get("receiver")} displayLink={query.get("displayLink")} sender={query.get("sender")} />
+        <SongHug
+          receiver={query.get("receiver")}
+          displayLink={query.get("displayLink")}
+          sender={query.get("sender")}
+          sendermail={query.get("sendermail")} />
       </Container>
     </div>
   );
