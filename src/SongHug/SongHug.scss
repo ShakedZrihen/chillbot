@@ -1,4 +1,8 @@
 .songHugContainer {
+  a {
+    text-decoration: none;
+  }
+
   .frame {
     position: relative;
     margin: 0 8px;
@@ -67,6 +71,7 @@
     margin-top: 60px !important;
 
     text-transform: none !important;
+    float: right;
   }
 
   .fadeOut {
