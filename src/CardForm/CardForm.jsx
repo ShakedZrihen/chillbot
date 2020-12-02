@@ -21,6 +21,7 @@ const CardForm = (props) => {
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [currentUser] = useState(localStorage.getItem("currentUser"));
 
   const [emailError, setEmailErrorMsg] = useState(VALIDATION_PASSED);
   const isEmailError = emailError !== VALIDATION_PASSED;
