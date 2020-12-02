@@ -3,7 +3,7 @@ import { HashRouter, Switch, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import SendSongPage from "./SendSongPage";
 import SongHugPage from "./SongHugPage";
-import { HOST } from "./consts";
+import RegisterPage from "./RegisterPage";
 
 const App = () => {
   return (
@@ -14,6 +14,9 @@ const App = () => {
         </Route>
         <Route path="/songhug">
           <SongHugPage />
+        </Route>
+        <Route path="/register">
+          <RegisterPage />
         </Route>
         <Route path="/">
           <MainPage />

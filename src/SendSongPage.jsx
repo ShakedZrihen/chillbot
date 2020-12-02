@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { Container } from "@material-ui/core";
 import { useLocation } from "react-router-dom";
@@ -8,7 +8,7 @@ import clsx from "clsx";
 import "./SendSongPage.scss";
 
 const SendSongPage = () => {
-  const query = new URLSearchParams(useLocation().search)
+  const query = new URLSearchParams(useLocation().search);
   const classes = useStyles();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const SendSongPage = () => {
         className={clsx(classes.container, "sendSongHugContainer")}
         maxWidth="xl"
       >
-        <Header />
+        <Header title={"Make Someone Happy!"} />
         <div className={classes.contentContainer}>
           <CardForm email={query.get("email")} />
         </div>

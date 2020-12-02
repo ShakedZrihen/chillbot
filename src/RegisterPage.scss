@@ -1,0 +1,56 @@
+.registerContainer {
+  .fieldContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+    width: 569px;
+    .error {
+      border: unset;
+    }
+  }
+
+  .textboxLabel {
+    color: #121213;
+    margin-bottom: 8px;
+    font-family: "Rubik";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+  }
+
+  .subtitle {
+    margin-top: 0;
+    margin-bottom: 50px !important;
+  }
+
+  .sendButton,
+  .MuiButton-root {
+    color: #121213 !important;
+    font-family: "Rubik" !important;
+    font-size: 25px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 30px !important;
+    letter-spacing: 0em !important;
+    text-align: center !important;
+
+    background: #ff5959 !important;
+    width: 370px !important;
+    height: 71px !important;
+    box-shadow: 0px 4px 20px 5px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 50px !important;
+
+    padding: 15px !important;
+    display: block !important;
+    margin-top: 60px !important;
+    text-transform: none !important;
+
+    position: absolute;
+  }
+
+  p {
+    margin-bottom: 0 !important;
+  }
+}
