@@ -6,9 +6,9 @@ import Button from "@material-ui/core/Button";
 import buildCard from "../resources/baseCard";
 import generateMessage from "../resources/botMessage";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import {VALIDATION_ERRORS,VALIDATION_PASSED} from './consts';
 import clsx from "clsx";
-import { BOT_TOKEN } from "../consts";
+// import { BOT_TOKEN } from "../consts";
 
 import "./style.scss";
 
@@ -20,12 +20,16 @@ const CardForm = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [emailError, setEmailErrorMsg] = useState(VALIDATION_PASSED);
+
+  const isEmailError = emailError !== VALIDATION_PASSED;
+
   const handleSend = async () => {
     setLoading(true);
     const name = await fetch(`https://webexapis.com/v1/people?email=${email}`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${BOT_TOKEN}`,
+        // Authorization: `Bearer ${BOT_TOKEN}`,
         "Content-Type": "application/json",
       },
     })
@@ -46,7 +50,7 @@ const CardForm = () => {
     fetch("https://webexapis.com/v1/messages", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${BOT_TOKEN}`,
+        // Authorization: `Bearer ${BOT_TOKEN}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(message),
@@ -67,7 +71,20 @@ const CardForm = () => {
   };
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+    const emailValue = event.target.value;
+    setEmail(emailValue);
+
+    if (emailValue && emailValue.trim().length > 0) {
+      if(emailValue.indexOf('cisco.com')<=0){
+        setEmailErrorMsg(VALIDATION_ERRORS.EMAIL.NOT_VALID);
+        return false;
+      }
+      setEmailErrorMsg(VALIDATION_PASSED);
+      return true;
+    }
+
+    setEmailErrorMsg(VALIDATION_ERRORS.EMAIL.EMPTY);
+    return false;
   };
 
   return (
@@ -79,11 +96,13 @@ const CardForm = () => {
               Send a SongHug for (email)
             </label>
             <TextField
-              id="email"
+              id="outlined-error-helper-text"
               variant="outlined"
-              className="textbox mail"
+              className={`textbox email ${isEmailError ? 'error': ''}`}
               value={email}
               onChange={handleEmailChange}
+              helperText={emailError}
+              error={isEmailError}
             />
           </div>
           <div className="fieldContainer">
@@ -126,6 +145,8 @@ const CardForm = () => {
           />
         </div>
       </div>
+
+
       {loading ? (
         <CircularProgress disableShrink className="spinner" />
       ) : (
