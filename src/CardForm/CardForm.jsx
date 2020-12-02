@@ -8,7 +8,7 @@ import generateMessage from "../resources/botMessage";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import clsx from "clsx";
-import { BOT_TOKEN } from "../consts";
+// import { BOT_TOKEN } from "../consts";
 
 import "./style.scss";
 

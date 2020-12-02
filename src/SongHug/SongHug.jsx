@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 
 import "./SongHug.scss";
 
-const SongHug = () => {
+const SongHug = (props) => {
   const config = {
     youtube: {
       playerVars: { autoplay: 1 },
@@ -16,12 +16,12 @@ const SongHug = () => {
   return (
     <div className="songHugContainer">
       <ReactPlayer
-        url="https://www.youtube.com/watch?v=Okq8xHrIZ8I"
+        url={props.displayLink}
         config={config}
         playing={true}
       />
       <div className="description">
-        Shaked sent you a <span className="songhug">SongHug!</span>
+        {props.name} sent you a <span className="songhug">SongHug!</span>
       </div>
       <Button className="sendButton" onClick={handleSend}>
         Send SongHug Back!
