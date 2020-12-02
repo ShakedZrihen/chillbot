@@ -48,6 +48,10 @@
       margin-right: auto;
     }
   }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
 
   .sendButton,
   .MuiButton-root {
@@ -72,6 +76,10 @@
 
     text-transform: none !important;
     float: right;
+  }
+
+  .sendBack {
+    background: #FFF !important;
   }
 
   .fadeOut {
