@@ -1,9 +1,17 @@
 .mainPageContainer {
   position: relative;
-  margin: 0 8px;
   display: flex;
   flex-flow: column;
   align-items: center;
+
+  .logo {
+    display: block;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-image: url("./resources/logo.svg");
+  }
 
   .header {
     background-image: url("./resources/bgPattern.svg");
@@ -31,19 +39,9 @@
     right: 353px;
   }
 
-  .logo {
-    font-weight: 900;
-    font-size: 312px;
-    color: #ddff57;
-    text-align: center;
-    position: relative;
-    bottom: 150px;
-  }
-
   .logo2 {
     color: white;
   }
-
 
   .sendButton,
   .MuiButton-root {
@@ -78,7 +76,6 @@
     -o-transition: opacity 1s ease-in-out;
     opacity: 0;
   }
-
 }
 
 #mainPageBody {

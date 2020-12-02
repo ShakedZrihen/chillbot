@@ -30,4 +30,4 @@ yarn-error.log*
 .eslintcache
 
 # consts
-/src/consts.js
+#/src/consts.js

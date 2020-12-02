@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import "./MainPage.scss";
-import { Container } from "@material-ui/core";
-import clsx from "clsx";
 import useStyles from "./style";
 import Button from "@material-ui/core/Button";
+import Logo from "./resources/logo.svg";
 
 const MainPage = () => {
   const classes = useStyles();
@@ -18,13 +17,9 @@ const MainPage = () => {
 
   return (
     <div className="mainPageContainer">
-      <div className="header">
-        <p className="logo">
-          Song<span className="logo2">Hug</span>
-        </p>
-        <div className="logoDot logoDot1" />
-        <div className="logoDot logoDot2" />
-      </div>
+      <div className="header" />
+      <div className="logo" />
+
       <Button className="sendButton">Send SongHug Back!</Button>
     </div>
   );
