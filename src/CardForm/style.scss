@@ -31,6 +31,10 @@
     flex-direction: column;
     margin-bottom: 22px;
     width: 569px;
+    .error
+    {
+      border: unset;
+    }
   }
 
   .resource {

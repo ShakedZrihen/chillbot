@@ -21,8 +21,9 @@ const CardForm = () => {
   const [loading, setLoading] = useState(false);
 
   const [emailError, setEmailErrorMsg] = useState(VALIDATION_PASSED);
-
   const isEmailError = emailError !== VALIDATION_PASSED;
+  const [youtubeError, setYoutubeErrorMsg] = useState(VALIDATION_PASSED);
+  const isYoutubeError = youtubeError !== VALIDATION_PASSED;
 
   const handleSend = async () => {
     setLoading(true);
@@ -67,7 +68,20 @@ const CardForm = () => {
   };
 
   const handleYoutubeLinkChange = (event) => {
-    setMusicLink(event.target.value);
+    const musicLink = event.target.value;
+    setMusicLink(musicLink);
+
+    if (musicLink && musicLink.trim().length > 0) {
+      if(musicLink.indexOf('youtube.com/watch')<=0){
+        setYoutubeErrorMsg(VALIDATION_ERRORS.YOUTUBE.NOT_VALID);
+        return false;
+      }
+      setYoutubeErrorMsg(VALIDATION_PASSED);
+      return true;
+    }
+
+    setYoutubeErrorMsg(VALIDATION_ERRORS.YOUTUBE.EMPTY);
+    return false;
   };
 
   const handleEmailChange = (event) => {
@@ -110,13 +124,15 @@ const CardForm = () => {
               Paste YouTube Link here
             </label>
             <TextField
-              id="youtube"
+              id="outlined-error-helper-text"
               variant="outlined"
-              className="textbox"
+              className={`textbox ${isYoutubeError ? 'error': ''}`}
               multiline
               rows={1}
               value={musicLink}
               onChange={handleYoutubeLinkChange}
+              helperText={youtubeError}
+              error={isYoutubeError}
             />
           </div>
           <div className="fieldContainer">
