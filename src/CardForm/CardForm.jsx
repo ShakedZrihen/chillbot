@@ -30,7 +30,7 @@ const CardForm = (props) => {
     const name = await fetch(`https://webexapis.com/v1/people?email=${email}`, {
       method: "GET",
       headers: {
-        // Authorization: `Bearer ${BOT_TOKEN}`,
+        Authorization: `Bearer ${BOT_TOKEN}`,
         "Content-Type": "application/json",
       },
     })
@@ -47,6 +47,7 @@ const CardForm = (props) => {
     const formattedLink =
       HOST +
       `/songHug?receiver=${email}&displayLink=${musicLink}&sender=ekohavi@cisco.com`;
+    console.log("formattedLink", formattedLink);
     const title = `Hi ${name}!`;
     const card = buildCard(title, image, formattedLink, description);
     const message = generateMessage(card, email);
