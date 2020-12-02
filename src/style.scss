@@ -19,39 +19,7 @@ body::before {
   opacity: 0.07;
 }
 
-.frame {
-  position: relative;
-  margin: 0 8px;
+#sendSongBody::before {
+  opacity: 0.07;
 }
 
-.flexCol {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex {
-  display: flex;
-  flex-direction: row;
-}
-
-.spaceBetween {
-  justify-content: space-between;
-}
-
-.textboxLabel {
-  color: #121213;
-  margin-bottom: 8px;
-  font-family: "Rubik";
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: 0em;
-}
-
-.songHugContainer {
-  width: 80% !important;
-  > button {
-    margin-left: auto;
-  }
-}

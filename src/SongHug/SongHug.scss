@@ -1,12 +1,15 @@
 .songHugContainer {
+  .frame {
+    position: relative;
+    margin: 0 8px;
+  }
   display: flex;
   flex-direction: column;
   div:first-child {
-    width: 80vw !important;
-    max-width: 177.78vh;
-    height: 32vw !important;
-    max-height: 100vh;
-    margin: 80px auto;
+    //960 x 540
+    width: 960px !important;
+    height: 540px !important;
+    margin: 20px auto;
   }
 
   iframe {
