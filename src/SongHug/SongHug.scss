@@ -79,7 +79,10 @@
   }
 
   .sendBack {
-    background: #FFF !important;
+    background: transparent !important;
+    color: #fff !important;
+    box-shadow: unset !important;
+    padding: 15px 0 !important;
   }
 
   .fadeOut {
