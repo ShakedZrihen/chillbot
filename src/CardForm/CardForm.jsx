@@ -9,10 +9,12 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { VALIDATION_ERRORS, VALIDATION_PASSED } from "./consts";
 import clsx from "clsx";
 import { BOT_TOKEN, HOST } from "../consts";
+import { useHistory } from "react-router-dom";
 
 import "./style.scss";
 
 const CardForm = (props) => {
+  const history = useHistory();
   const [image, setImage] = useState(GIFs[0]);
   const [musicLink, setMusicLink] = useState("");
   const [email, setEmail] = useState(props.email);
@@ -20,7 +22,14 @@ const CardForm = (props) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [currentUser] = useState(localStorage.getItem("currentUser"));
-  console.log("currentUser", currentUser);
+
+  if (currentUser == null) {
+    history.push({
+      pathname: "/register",
+    });
+    return;
+  }
+
   const [emailError, setEmailErrorMsg] = useState(VALIDATION_PASSED);
   const isEmailError = emailError !== VALIDATION_PASSED;
   const [youtubeError, setYoutubeErrorMsg] = useState(VALIDATION_PASSED);
