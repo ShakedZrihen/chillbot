@@ -20,7 +20,9 @@ const MainPage = () => {
       <div className="header" />
       <div className="logo" />
 
-      <Button className="sendButton">Send SongHug Back!</Button>
+      <Button className="sendButton">Send SongHug</Button>
+      <div className="love">Spread The Love!</div>
+      <div className="heart" />
     </div>
   );
 };
