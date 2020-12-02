@@ -26,7 +26,7 @@ const SongHug = (props) => {
       <div className="description">
         {props.name} sent you a <span className="songhug">SongHug!</span>
       </div>
-      <Link to="/sendSong">
+      <Link to={`/sendSong?email=${props.sendback}`}>
         <Button className="sendButton" onClick={() => handleSend(props.sendback)}>
           Send SongHug Back!
         </Button>
