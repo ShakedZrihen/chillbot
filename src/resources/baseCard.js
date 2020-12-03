@@ -12,6 +12,7 @@ export const TITLE_BLOCK = {
 
 export const IMAGE_BLOCK = {
   type: "Image",
+  size: "Small",
   url: "imageUrl",
   isVisible: true,
   selectAction: {
