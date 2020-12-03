@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/chillbot/static/css/main.4337819a.chunk.css",
-    "main.js": "/chillbot/static/js/main.bc5acdb3.chunk.js",
-    "main.js.map": "/chillbot/static/js/main.bc5acdb3.chunk.js.map",
+    "main.css": "/chillbot/static/css/main.f9aacad2.chunk.css",
+    "main.js": "/chillbot/static/js/main.16ef985a.chunk.js",
+    "main.js.map": "/chillbot/static/js/main.16ef985a.chunk.js.map",
     "runtime-main.js": "/chillbot/static/js/runtime-main.f76726f9.js",
     "runtime-main.js.map": "/chillbot/static/js/runtime-main.f76726f9.js.map",
-    "static/js/2.806185c5.chunk.js": "/chillbot/static/js/2.806185c5.chunk.js",
-    "static/js/2.806185c5.chunk.js.map": "/chillbot/static/js/2.806185c5.chunk.js.map",
+    "static/js/2.6700f777.chunk.js": "/chillbot/static/js/2.6700f777.chunk.js",
+    "static/js/2.6700f777.chunk.js.map": "/chillbot/static/js/2.6700f777.chunk.js.map",
     "index.html": "/chillbot/index.html",
-    "static/css/main.4337819a.chunk.css.map": "/chillbot/static/css/main.4337819a.chunk.css.map",
-    "static/js/2.806185c5.chunk.js.LICENSE.txt": "/chillbot/static/js/2.806185c5.chunk.js.LICENSE.txt",
+    "static/css/main.f9aacad2.chunk.css.map": "/chillbot/static/css/main.f9aacad2.chunk.css.map",
+    "static/js/2.6700f777.chunk.js.LICENSE.txt": "/chillbot/static/js/2.6700f777.chunk.js.LICENSE.txt",
     "static/media/style.scss": "/chillbot/static/media/bgPattern.747a4b87.svg",
     "static/media/MainPage.scss": "/chillbot/static/media/logo.9932167d.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.f76726f9.js",
-    "static/js/2.806185c5.chunk.js",
-    "static/css/main.4337819a.chunk.css",
-    "static/js/main.bc5acdb3.chunk.js"
+    "static/js/2.6700f777.chunk.js",
+    "static/css/main.f9aacad2.chunk.css",
+    "static/js/main.16ef985a.chunk.js"
   ]
 }
