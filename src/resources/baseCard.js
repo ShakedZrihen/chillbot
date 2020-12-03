@@ -15,6 +15,7 @@ export const IMAGE_BLOCK = {
   size: "Large",
   horizontalAlignment: "Center",
   url: "imageUrl",
+  altText: "*Cute GIF*",
   isVisible: true,
   selectAction: {
     type: "Action.OpenUrl",
@@ -47,6 +48,10 @@ export const BASE_CARD = {
     $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
     version: "1.2",
     body: [TITLE_BLOCK, IMAGE_BLOCK, DESCRIPTION_BLOCK, EXPLAINATION_BLOCK],
+    selectAction: {
+      type: "Action.OpenUrl",
+      url: "Youtube link",
+    },
   },
 };
 
@@ -60,6 +65,7 @@ const buildCard = (title, image, youtubeLink, description) => {
   const descriptionBlock = { ...DESCRIPTION_BLOCK, text: description };
   return {
     ...BASE_CARD,
+    selectAction: { ...IMAGE_BLOCK.selectAction, url: youtubeLink },
     content: {
       ...BASE_CARD.content,
       body: [titleBlock, imageBlock, descriptionBlock, EXPLAINATION_BLOCK],
