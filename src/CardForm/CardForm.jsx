@@ -199,7 +199,7 @@ const CardForm = (props) => {
       )}
       <Snackbar
         open={showToast}
-        autoHideDuration={2000}
+        autoHideDuration={5000}
         onClose={() => setShowToast(false)}
       >
         <Alert onClose={() => setShowToast(false)} severity="success">
