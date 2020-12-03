@@ -65,9 +65,9 @@ const buildCard = (title, image, youtubeLink, description) => {
   const descriptionBlock = { ...DESCRIPTION_BLOCK, text: description };
   return {
     ...BASE_CARD,
-    selectAction: { ...IMAGE_BLOCK.selectAction, url: youtubeLink },
     content: {
       ...BASE_CARD.content,
+      selectAction: { ...IMAGE_BLOCK.selectAction, url: youtubeLink },
       body: [titleBlock, imageBlock, descriptionBlock, EXPLAINATION_BLOCK],
     },
   };
