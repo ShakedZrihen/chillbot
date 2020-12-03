@@ -3,7 +3,7 @@ export const TITLE_BLOCK = {
   text: "",
   wrap: true,
   fontType: "Default",
-  size: "ExtraLarge",
+  size: "Large",
   weight: "Bolder",
   color: "Accent",
   horizontalAlignment: "Center",
