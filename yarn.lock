@@ -5291,6 +5291,11 @@ fs.realpath@^1.0.0:
   resolved "https://artifactory.cloudlock.com:443/api/npm/npm/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
+fscreen@^1.0.2:
+  version "1.1.0"
+  resolved "https://artifactory.cloudlock.com:443/api/npm/npm/fscreen/-/fscreen-1.1.0.tgz#80f432f24dc915ba0be0f5f6a7d60ca12ecbab5c"
+  integrity sha1-gPQy8k3JFboL4PX2p9YMoS7Lq1w=
+
 fsevents@^1.2.7:
   version "1.2.13"
   resolved "https://artifactory.cloudlock.com:443/api/npm/npm/fsevents/-/fsevents-1.2.13.tgz#f325cb0455592428bcf11b383370ef70e3bfcc38"
@@ -9521,6 +9526,13 @@ react-fast-compare@^3.0.1:
   version "3.2.0"
   resolved "https://artifactory.cloudlock.com:443/api/npm/npm/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha1-ZBqdqBtqYyDycOiXJPtFoLOeQ7s=
+
+react-full-screen@^0.3.1:
+  version "0.3.1"
+  resolved "https://artifactory.cloudlock.com:443/api/npm/npm/react-full-screen/-/react-full-screen-0.3.1.tgz#60bf7b1ab140348bcfee4f5c98e927b6a0766809"
+  integrity sha1-YL97GrFANIvP7k9cmOkntqB2aAk=
+  dependencies:
+    fscreen "^1.0.2"
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1:
   version "16.13.1"

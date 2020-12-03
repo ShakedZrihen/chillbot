@@ -1,6 +1,16 @@
 @import "../style.scss";
 
 .cardFromContainer {
+  .alert {
+    background-color: rgb(255, 89, 89);
+    width: 349px;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+  }
+  
   a {
     text-decoration: none;
   }

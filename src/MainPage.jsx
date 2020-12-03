@@ -1,18 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 
 import "./MainPage.scss";
-import useStyles from "./style";
 import Button from "@material-ui/core/Button";
-import Logo from "./resources/logo.svg";
 
 const MainPage = () => {
-  const classes = useStyles();
   const history = useHistory();
 
   useEffect(() => {
     document.body.id = "mainPageBody";
-
     return () => {
       document.body.id = "";
     };

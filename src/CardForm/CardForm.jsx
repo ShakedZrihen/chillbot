@@ -30,7 +30,7 @@ const CardForm = (props) => {
   const [showToast, setShowToast] = useState(false);
 
   const Alert = (props) => {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
+    return <MuiAlert elevation={6} variant="filled" {...props} className="alert"/>;
   };
 
   const handleSend = async () => {
@@ -199,11 +199,11 @@ const CardForm = (props) => {
       )}
       <Snackbar
         open={showToast}
-        autoHideDuration={6000}
+        autoHideDuration={2000}
         onClose={() => setShowToast(false)}
       >
         <Alert onClose={() => setShowToast(false)} severity="success">
-          SongHug On his way!
+          SongHug is on his way!
         </Alert>
       </Snackbar>
     </div>
