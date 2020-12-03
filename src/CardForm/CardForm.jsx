@@ -71,7 +71,8 @@ const CardForm = (props) => {
       `/songHug?receiver=${email}&displayLink=${musicLink}&sender=${sender}&senderMail=${currentUser}`;
     console.log("formattedLink", formattedLink);
     const title = `Hi ${name}!`;
-    const card = buildCard(title, image, formattedLink, description);
+    const senderTitle = `${sender} sent you SongHug`;
+    const card = buildCard(title, senderTitle, image, formattedLink, description);
     const message = generateMessage(card, email);
 
     await fetch("https://webexapis.com/v1/messages", {

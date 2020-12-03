@@ -10,6 +10,13 @@ export const TITLE_BLOCK = {
   isSubtle: true,
 };
 
+export const SENDER_BLOCK = {
+  type: "TextBlock",
+  text: "${title}",
+  horizontalAlignment: "Center",
+  weight: "Bolder",
+};
+
 export const IMAGE_BLOCK = {
   type: "Image",
   size: "Large",
@@ -47,7 +54,13 @@ export const BASE_CARD = {
     type: "AdaptiveCard",
     $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
     version: "1.2",
-    body: [TITLE_BLOCK, IMAGE_BLOCK, DESCRIPTION_BLOCK, EXPLAINATION_BLOCK],
+    body: [
+      TITLE_BLOCK,
+      SENDER_BLOCK,
+      IMAGE_BLOCK,
+      DESCRIPTION_BLOCK,
+      EXPLAINATION_BLOCK,
+    ],
     selectAction: {
       type: "Action.OpenUrl",
       url: "Youtube link",
@@ -55,8 +68,9 @@ export const BASE_CARD = {
   },
 };
 
-const buildCard = (title, image, youtubeLink, description) => {
+const buildCard = (title, senderTitle, image, youtubeLink, description) => {
   const titleBlock = { ...TITLE_BLOCK, text: title };
+  const senderBlock = { ...SENDER_BLOCK, text: senderTitle };
   const imageBlock = {
     ...IMAGE_BLOCK,
     url: image,
@@ -68,7 +82,13 @@ const buildCard = (title, image, youtubeLink, description) => {
     content: {
       ...BASE_CARD.content,
       selectAction: { ...IMAGE_BLOCK.selectAction, url: youtubeLink },
-      body: [titleBlock, imageBlock, descriptionBlock, EXPLAINATION_BLOCK],
+      body: [
+        titleBlock,
+        senderBlock,
+        imageBlock,
+        descriptionBlock,
+        EXPLAINATION_BLOCK,
+      ],
     },
   };
 };
