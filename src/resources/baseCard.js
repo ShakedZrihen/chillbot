@@ -12,7 +12,8 @@ export const TITLE_BLOCK = {
 
 export const IMAGE_BLOCK = {
   type: "Image",
-  size: "Small",
+  size: "Large",
+  horizontalAlignment: "Center",
   url: "imageUrl",
   isVisible: true,
   selectAction: {
