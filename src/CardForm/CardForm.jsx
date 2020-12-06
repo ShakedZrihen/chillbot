@@ -214,7 +214,7 @@ const CardForm = (props) => {
           Send SongHug
         </Button>
       )}
-      <Snackbar open={showToast} autoHideDuration={5000} onClose={closeAlert}>
+      <Snackbar open={showToast} autoHideDuration={3000} onClose={closeAlert}>
         <Alert onClose={closeAlert} severity="success">
           SongHug is on his way!
         </Alert>
