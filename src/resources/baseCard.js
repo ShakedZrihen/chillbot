@@ -24,10 +24,6 @@ export const IMAGE_BLOCK = {
   url: "imageUrl",
   altText: "*Cute GIF*",
   isVisible: true,
-  selectAction: {
-    type: "Action.OpenUrl",
-    url: "Youtube link",
-  },
 };
 
 export const DESCRIPTION_BLOCK = {
@@ -74,7 +70,6 @@ const buildCard = (title, senderTitle, image, youtubeLink, description) => {
   const imageBlock = {
     ...IMAGE_BLOCK,
     url: image,
-    selectAction: { ...IMAGE_BLOCK.selectAction, url: youtubeLink },
   };
   const descriptionBlock = { ...DESCRIPTION_BLOCK, text: description };
   return {

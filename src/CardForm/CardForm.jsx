@@ -30,7 +30,9 @@ const CardForm = (props) => {
   const [showToast, setShowToast] = useState(false);
 
   const Alert = (props) => {
-    return <MuiAlert elevation={6} variant="filled" {...props} className="alert"/>;
+    return (
+      <MuiAlert elevation={6} variant="filled" {...props} className="alert" />
+    );
   };
 
   const handleSend = async () => {
@@ -69,10 +71,15 @@ const CardForm = (props) => {
     const formattedLink =
       HOST +
       `/songHug?receiver=${email}&displayLink=${musicLink}&sender=${sender}&senderMail=${currentUser}`;
-    console.log("formattedLink", formattedLink);
     const title = `Hi ${name}!`;
     const senderTitle = `${sender} sent you SongHug`;
-    const card = buildCard(title, senderTitle, image, formattedLink, description);
+    const card = buildCard(
+      title,
+      senderTitle,
+      image,
+      formattedLink,
+      description
+    );
     const message = generateMessage(card, email);
 
     await fetch("https://webexapis.com/v1/messages", {
@@ -82,10 +89,7 @@ const CardForm = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(message),
-    })
-      .catch((e) => console.log(e))
-      .then(() => setLoading(false));
-
+    }).catch((e) => console.log(e));
     setShowToast(true);
   };
 
@@ -128,6 +132,18 @@ const CardForm = (props) => {
 
     setEmailErrorMsg(VALIDATION_ERRORS.EMAIL.EMPTY);
     return false;
+  };
+
+  const clearForm = () => {
+    setEmail("");
+    setDescription("");
+    setMusicLink("");
+  };
+
+  const closeAlert = () => {
+    clearForm();
+    setLoading(false);
+    setShowToast(false);
   };
 
   return (
@@ -198,12 +214,8 @@ const CardForm = (props) => {
           Send SongHug
         </Button>
       )}
-      <Snackbar
-        open={showToast}
-        autoHideDuration={5000}
-        onClose={() => setShowToast(false)}
-      >
-        <Alert onClose={() => setShowToast(false)} severity="success">
+      <Snackbar open={showToast} autoHideDuration={5000} onClose={closeAlert}>
+        <Alert onClose={closeAlert} severity="success">
           SongHug is on his way!
         </Alert>
       </Snackbar>
