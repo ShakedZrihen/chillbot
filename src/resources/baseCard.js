@@ -76,7 +76,7 @@ const buildCard = (title, senderTitle, image, youtubeLink, description) => {
     ...BASE_CARD,
     content: {
       ...BASE_CARD.content,
-      selectAction: { ...IMAGE_BLOCK.selectAction, url: youtubeLink },
+      selectAction: { type: "Action.OpenUrl", url: youtubeLink },
       body: [
         titleBlock,
         senderBlock,
