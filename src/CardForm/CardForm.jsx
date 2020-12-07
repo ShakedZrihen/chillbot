@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import ResourcePicker from "./ResourcePicker";
-import GIFs from "../resources/gifs";
+import GIFs, { CATAGORIES } from "../resources/gifs";
 import Button from "@material-ui/core/Button";
 import buildCard from "../resources/baseCard";
 import generateMessage from "../resources/botMessage";
@@ -203,6 +203,7 @@ const CardForm = (props) => {
             allowBlank={false}
             value={image}
             setValue={setImage}
+            catagories={CATAGORIES}
           />
         </div>
       </div>

@@ -10,7 +10,7 @@
     align-items: center;
     font-size: 25px;
   }
-  
+
   a {
     text-decoration: none;
   }
@@ -51,6 +51,15 @@
 
   .resourcePickerContainer {
     margin-left: 87px;
+
+    .chip {
+      margin-left: 10px;
+    }
+
+    .chipSelected {
+      background-color: #ff5959 !important;
+      color: white !important;
+    }
   }
 
   .sendButton,
