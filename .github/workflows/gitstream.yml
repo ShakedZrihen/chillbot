@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: linear-b/gitstream-github-action
-          ref: develop
+          ref: add-missing-attributes-to-docker
           token: ${{ secrets.CI_USER_GIT_TOKEN }}
       - name: Evaluate Rules
         uses: ./
