@@ -34,7 +34,7 @@ jobs:
         uses: ./
         id: rules-engine
         with:
-          full_repository: ${{ github.event.full_repository }}
+          full_repository: ${{ github.event.inputs.full_repository }}
           head_ref: ${{ github.event.head_ref }}
           base_ref: ${{ github.event.inputs.base_ref }}
           client_payload: ${{ github.event.inputs.client_payload }}
