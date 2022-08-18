@@ -9,7 +9,7 @@ on:
       full_repository:
           description: the repository name include the owner in `owner/repo_name` format
           required: true
-      head_sha:
+      head_ref:
           description: the head sha
           required: true
       base_ref:
