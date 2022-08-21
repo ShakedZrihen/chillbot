@@ -18,10 +18,12 @@ checks:
       analytics: {{ source.diff.content | grep('NotifyAmplitude') }}
       service: {{ files | allPassRegex('service') }}
 gates:
-  docs_only:
+  important:
     on: [pull_request]
     rules:
       - rule: {{ checks.content.is.docs_only }}
     actions: 
-      - name : approve
+      - name : forceReviewers
         type: gitstream
+        args:
+          - desiredReviewers: 1
