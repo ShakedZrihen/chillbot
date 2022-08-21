@@ -1,2 +1,2 @@
 # Chillbot
-asdftyhbnkl,.;pokjhytrdxzwerfvbhjiol,.
+asdftyhbnkl,.;,.
