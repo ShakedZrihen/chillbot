@@ -28,14 +28,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: linear-b/gitstream-github-action
-          ref: add-missing-attributes-to-docker
+          ref: develop
           token: ${{ secrets.CI_USER_GIT_TOKEN }}
       - name: Evaluate Rules
         uses: ./
         id: rules-engine
         with:
           full_repository: ${{ github.event.inputs.full_repository }}
-          head_ref: ${{ github.event.head_ref }}
+          head_ref: ${{ github.event.inputs.head_ref }}
           base_ref: ${{ github.event.inputs.base_ref }}
           client_payload: ${{ github.event.inputs.client_payload }}
           installation_id: ${{ github.event.inputs.installation_id }}
