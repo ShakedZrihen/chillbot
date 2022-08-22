@@ -25,11 +25,7 @@ jobs:
     name: CMR
     steps:
       - name: Clone gitstream RE
-        uses: actions/checkout@v2
-        with:
-          repository: linear-b/gitstream-github-action
-          ref: develop
-          token: ${{ secrets.CI_USER_GIT_TOKEN }}
+        uses: linear-b/gitstream-github-action@0.1.0
       - name: Evaluate Rules
         uses: ./
         id: rules-engine
