@@ -33,3 +33,4 @@ jobs:
           base_ref: ${{ github.event.inputs.base_ref }}
           client_payload: ${{ github.event.inputs.client_payload }}
           installation_id: ${{ github.event.inputs.installation_id }}
+          resolver_url: "http://resolver.ngrok.io"
