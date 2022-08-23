@@ -7,7 +7,7 @@ checks:
       docs_only: {{ files | allExtensions(['md', 'txt']) }}
       tests_only: {{ files | allTests }}
       necessary_only: {{ files | filterRegex(['php']) | allExtensions(['txt']) }}
-      core_service: {{ files | filterRegex('core.*\.js$') | length > 0 }}
+      core_service: {{ files | includes('core.*\.js$') | length > 0 }}
   size:
     is:
       xsmall: {{ branch.diff.size < 20 }}
