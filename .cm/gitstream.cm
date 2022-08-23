@@ -23,5 +23,7 @@ gates:
     rules:
       - rule: {{ checks.content.is.docs_only }}
     actions: 
-      - name : approve
+      - name : set-required-reviewers
         type: gitstream
+        args:
+          - reviewers: 2
