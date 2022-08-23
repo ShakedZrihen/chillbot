@@ -29,7 +29,7 @@ gates:
       - name : add-labels
         type: gitstream
         args:
-          - lables: ['docs', 'non-code']
+          - labels: ['docs', 'non-code']
   core_changes:
     on: [pull_request]
     rules:
@@ -42,4 +42,4 @@ gates:
       - name : add-labels
         type: gitstream
         args:
-          - lables: ['core-change']
+          - labels: ['core-change']
