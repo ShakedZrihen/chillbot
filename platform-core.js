@@ -1,2 +1,2 @@
-const helloDanaa = () => "happy-B-Day"
+const helloDan = () => "happy-B-Day"
 //check check
