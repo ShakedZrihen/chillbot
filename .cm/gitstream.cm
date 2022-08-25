@@ -15,9 +15,11 @@ automations:
     if:
       - {{ checks.content.is.docs_only }}
     run: 
-      - action : set-required-approvals@v1
+      - action : update-check@v1
         args:
-          approvals: 2
+          checkName: gitStream.cm
+          status: completed
+          conclusion: action_required
   small_pr:
     if:
       - {{ checks.size.is.small }}
