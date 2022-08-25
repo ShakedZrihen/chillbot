@@ -15,10 +15,9 @@ automations:
     if:
       - {{ checks.content.is.docs_only }}
     run: 
-      - action : approve@v1
-      - action : add-labels@v1
+      - action : set-required-approvals@v1
         args:
-          labels: ['non-code']
+          approvals: 2
   small_pr:
     if:
       - {{ checks.size.is.small }}
