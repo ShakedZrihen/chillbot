@@ -17,7 +17,7 @@ automations:
     run: 
       - action : update-check@v1
         args:
-          checkName: gitStream.cm
+          checkName: "gitStream.cm"
           status: completed
           conclusion: action_required
   small_pr:
