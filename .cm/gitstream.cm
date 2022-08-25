@@ -1,45 +1,28 @@
 manifest:
   version: 1.0
+
 checks:
   content:
     is:
-      asset_only: {{ files | allExtensions(['png', 'svg', 'jpg', 'gif', 'css']) }}
-      docs_only: {{ files | allExtensions(['md', 'txt']) }}
+      docs_only: {{ files | allExtensions(['md', 'txt', 'rst']) }}
       tests_only: {{ files | allTests }}
-      necessary_only: {{ files | filterRegex(['php']) | allExtensions(['txt']) }}
-      core_service: {{ files | includesRegex(['core']) }}
   size:
     is:
-      xsmall: {{ branch.diff.size < 20 }}
-      small_or_less: {{ branch.diff.size < 100 }}
-      medium_or_less: {{ branch.diff.size < 200 }}
-      large: {{ branch.diff.size >= 200 }}
-  code_includes:
-    is:
-      analytics: {{ source.diff.content | grep('NotifyAmplitude') }}
-      service: {{ files | allPassRegex('service') }}
-gates:
+      small: {{ branch.diff.size < 20 }}
+
+automations:
   docs_only:
-    on: [pull_request]
-    rules:
-      - rule: {{ checks.content.is.docs_only }}
-    actions: 
-      - name : approve
-        type: gitstream
-      - name : add-labels
-        type: gitstream
+    if:
+      - {{ checks.content.is.docs_only }}
+    run: 
+      - action : approve@v1
+      - action : add-labels@v1
         args:
-          - labels: ['docs', 'non-code']
-  core_changes:
-    on: [pull_request]
-    rules:
-      - rule: {{ checks.content.is.core_service }}
-    actions: 
-      - name : set-required-reviewers
-        type: gitstream
+          labels: ['non-code']
+  small_pr:
+    if:
+      - {{ checks.size.is.small }}
+    run: 
+      - action : add-labels@v1
         args:
-          - reviewers: 2
-      - name : add-labels
-        type: gitstream
-        args:
-          - labels: ['core-change']
+          labels: ['small']
