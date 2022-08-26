@@ -15,11 +15,9 @@ automations:
     if:
       - {{ checks.content.is.docs_only }}
     run: 
-      - action : update-check@v1
+      - action : add-reviewers@v1
         args:
-          checkName: "gitStream.cm"
-          status: completed
-          conclusion: action_required
+          reviewers: ["vim-zz"]
   small_pr:
     if:
       - {{ checks.size.is.small }}
