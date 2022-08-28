@@ -29,7 +29,7 @@ on:
 jobs:
   continuous-merge-rules:
     runs-on: ubuntu-latest
-    name: CMR
+    name: gitStream workflow
     steps:
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v1
