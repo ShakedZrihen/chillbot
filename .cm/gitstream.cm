@@ -15,18 +15,10 @@ automations:
     if:
       - {{ checks.content.is.docs_only }}
     run: 
-      - action : add-reviewers@v1
-        args:
-          reviewers: ["vim-zz", "EladKohavi"]
+      - action : approve@v1
       - action : add-labels@v1
         args:
-          labels: ['small']
-      - action : set-required-approvals@v1
-        args:
-          approvals: 2
-      - action: add-comment@v1
-        args:
-          comment: 'Hello from gitstream!'
+          labels: ['non-code']
   small_pr:
     if:
       - {{ checks.size.is.small }}
