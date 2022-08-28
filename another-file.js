@@ -1,0 +1,1 @@
+const someFunc = () => "hello-world"
