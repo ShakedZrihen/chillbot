@@ -17,7 +17,16 @@ automations:
     run: 
       - action : add-reviewers@v1
         args:
-          reviewers: ["vim-zz"]
+          reviewers: ["vim-zz", "EladKohavi"]
+      - action : add-labels@v1
+        args:
+          labels: ['small']
+      - action : set-required-approvals@v1
+        args:
+          approvals: 2
+      - action: add-comment@v1
+        args:
+          comment: 'Hello from gitstream!'
   small_pr:
     if:
       - {{ checks.size.is.small }}
