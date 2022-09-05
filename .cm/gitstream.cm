@@ -11,22 +11,6 @@ checks:
       small: {{ branch.diff.size < 20 }}
 
 automations:
-  docs_only:
-    if:
-      - {{ checks.content.is.docs_only }}
-    run: 
-      - action : add-reviewers@v1
-        args:
-          reviewers: ["vim-zz", "EladKohavi"]
-      - action : add-labels@v1
-        args:
-          labels: ['small']
-      - action : set-required-approvals@v1
-        args:
-          approvals: 2
-      - action: add-comment@v1
-        args:
-          comment: 'Hello from gitstream!'
   small_pr:
     if:
       - {{ checks.size.is.small }}
@@ -35,3 +19,5 @@ automations:
         args:
           labels: ['small']
       - action: merge@v1
+        args:
+          require_all_checks: true
