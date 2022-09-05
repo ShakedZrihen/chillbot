@@ -34,3 +34,4 @@ automations:
       - action : add-labels@v1
         args:
           labels: ['small']
+      - action: merge@v1
