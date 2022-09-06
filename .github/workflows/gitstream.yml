@@ -57,6 +57,6 @@ jobs:
               repo: 'chillbot',
               name: 'gitstream.cm',
               status: 'completed',
-              head_sha: '2101ed94d0f36607ad9ed113e263c31a7868ef09',
+              head_sha: 'e71684fb4f4992527b1671664a8e2c7c0f385240',
               conclusion: 'failure'
             });
