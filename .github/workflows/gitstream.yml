@@ -33,8 +33,8 @@ jobs:
     steps:
       - name: Echo payload
         run: |
-          echo ${{ fromJSON(github.event.inputs.client_payload) }}
-          echo ${{ fromJSON(github) }}
+          echo "${{ fromJSON(github.event.inputs.client_payload) }}"
+          echo "${{ github }}"
         shell: bash
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v1
