@@ -55,7 +55,7 @@ jobs:
         env:
           OWNER: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).owner }}
           REPO: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).repo }}
-          REF: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).head_sha }}
+          REF: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).headSha }}
         with:
           script: |
             try {
