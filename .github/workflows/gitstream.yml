@@ -32,7 +32,7 @@ jobs:
     name: gitStream workflow
     steps:
       - name: Echo payload
-        run: echo ${{ fromJSON(github.event.inputs.client_payload) }}
+        run: echo ${{ github.event.inputs.client_payload }}
         shell: bash
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v1
@@ -52,16 +52,11 @@ jobs:
         id: invoke-check
         with:
           script: |
-            try {
-              const result = await github.checks.create({
-                owner: 'ShakedZrihen',
-                repo: 'chillbot',
-                name: 'gitstream.cm',
-                status: 'completed',
-                head_sha: '2101ed94d0f36607ad9ed113e263c31a7868ef09',
-                conclusion: 'failure'
-              });
-              return result.data;
-            } catch (err) {
-                core.setFailed(`Request failed with error ${err}`);
-            }
+            await github.checks.create({
+              owner: 'ShakedZrihen',
+              repo: 'chillbot',
+              name: 'gitstream.cm',
+              status: 'completed',
+              head_sha: '2101ed94d0f36607ad9ed113e263c31a7868ef09',
+              conclusion: 'failure'
+            });
