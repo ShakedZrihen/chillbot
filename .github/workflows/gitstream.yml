@@ -48,6 +48,7 @@ jobs:
           resolver_token: ${{ github.event.inputs.resolver_token }}
       - name: Update gitStream check on error
         if: failure() && steps.rules-engine.outcome == 'failure'
+        uses: actions/github-script@v3
         with:
           script: |
             await github.checks.create({
