@@ -32,7 +32,7 @@ jobs:
     name: gitStream workflow
     steps:
       - name: Echo payload
-        run: echo ${{ github.event.inputs.client_payload }}
+        run: echo ${{ fromJSON(github.event.inputs.client_payload) }}
         shell: bash
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v1
@@ -54,7 +54,7 @@ jobs:
           script: |
             try {
               const result = await github.checks.create({
-                owner: ${{ fromJSON(github.event.inputs.client_payload.owner) }},
+                owner: ${{ fromJSON(github.event.inputs.client_payload).owner }},
                 repo: ${{ github.event.inputs.client_payload.repo }},
                 name: 'gitstream.cm',
                 status: 'completed',
