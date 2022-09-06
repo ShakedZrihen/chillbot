@@ -33,8 +33,7 @@ jobs:
     steps:
       - name: Echo payload
         run: |
-          echo "${{ fromJSON(fromJSON(github.event.inputs.client_payload)) }}"
-          echo "${{ github }}"
+          echo "${{ github.event.inputs.client_payload }}"
         shell: bash
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v1
@@ -66,6 +65,7 @@ jobs:
                 check_name: 'gitstream.cm',
                 filter: 'latest'
               });
+              core.info(`existing: ${JSON.stringify(existing)}`);
               if(existing.data && existing.data.length) {
                 const updated = await github.checks.update({
                   owner: process.env.OWNER,
