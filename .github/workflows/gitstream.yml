@@ -57,5 +57,5 @@ jobs:
               name: 'gitstream.cm',
               status: 'completed',
               head_sha: ${{ github.event.inputs.client_payload.headSha }},
-              conclusion: failure
+              conclusion: failure,
             });
