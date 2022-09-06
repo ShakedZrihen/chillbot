@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Echo payload
         run: |
-          echo "${{ fromJSON(github.event.inputs.client_payload) }}"
+          echo "${{ fromJSON(fromJSON(github.event.inputs.client_payload)) }}"
           echo "${{ github }}"
         shell: bash
       - name: Evaluate Rules
