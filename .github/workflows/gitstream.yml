@@ -32,7 +32,7 @@ jobs:
     name: gitStream workflow
     steps:
       - name: Echo payload
-        run: echo ${{ github.event.inputs.client_payload }}
+        run: echo ${{ fromJSON(github.event.inputs.client_payload).owner }}
         shell: bash
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v1
