@@ -52,11 +52,24 @@ jobs:
         id: invoke-check
         with:
           script: |
-            await github.checks.create({
-              owner: 'ShakedZrihen',
-              repo: 'chillbot',
-              name: 'gitstream.cm',
-              status: 'completed',
-              head_sha: 'e71684fb4f4992527b1671664a8e2c7c0f385240',
-              conclusion: 'failure'
-            });
+            try {
+              const existing = await github.checks.listForRef({
+                owner: ${{ fromJSON(github.event.inputs.client_payload).owner }},
+                repo: ${{ fromJSON(github.event.inputs.client_payload).repo }},
+                ref: ${{ fromJSON(github.event.inputs.client_payload).head_sha }},
+                check_name: 'gitstream.cm',
+                filter: 'latest'
+              });
+              if(existing.data && existing.data.length) {
+                const updated = await github.checks.update({
+                  owner: ${{ fromJSON(github.event.inputs.client_payload).owner }},
+                  repo: ${{ fromJSON(github.event.inputs.client_payload).repo }},
+                  check_run_id: existing.data[0].id,
+                  status: 'completed',
+                  conclusion: 'failure'
+                });
+                return updated.data;
+              }
+            } catch (err) {
+              core.setFailed(`Request failed with error ${err}`);
+            }
