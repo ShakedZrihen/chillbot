@@ -51,11 +51,16 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            await github.checks.create({
-              owner: ${{ github.event.inputs.client_payload.owner }},
-              repo: ${{ github.event.inputs.client_payload.repo }},
-              name: 'gitstream.cm',
-              status: 'completed',
-              head_sha: ${{ github.event.inputs.client_payload.headSha }},
-              conclusion: 'failure'
-            });
+            try {
+              const result = await github.checks.create({
+                owner: ${{ github.event.inputs.client_payload.owner }},
+                repo: ${{ github.event.inputs.client_payload.repo }},
+                name: 'gitstream.cm',
+                status: 'completed',
+                head_sha: ${{ github.event.inputs.client_payload.headSha }},
+                conclusion: 'failure'
+              });
+              return result.data;
+            } catch (err) {
+                core.setFailed(`Request failed with error ${err}`);
+            }
