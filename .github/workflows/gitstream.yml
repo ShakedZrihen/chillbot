@@ -49,6 +49,7 @@ jobs:
       - name: Update gitStream check on error
         if: ${{ steps.rules-engine.outcome == 'failure'}}
         uses: actions/github-script@v3
+        id: invoke-check
         with:
           script: |
             try {
