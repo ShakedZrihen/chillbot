@@ -1,0 +1,22 @@
+manifest:
+  version: 1.0
+checks:
+  content:
+    is:
+      docs_only: {{ files | allExtensions(['md', 'txt', 'rst']) }}
+      tests_only: {{ files | allTests }}
+  size:
+    is:
+      small: {{ branch.diff.size < 20 }}
+
+automations:
+  small_pr:
+    if:
+      - {{ checks.size.is.small }}
+    run: 
+      - action : add-labels@v1
+        args:
+          labels: ['small']
+      - action: merge@v1
+        args:
+          require_all_checks: true
