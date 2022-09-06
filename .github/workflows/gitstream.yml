@@ -50,22 +50,24 @@ jobs:
         if: ${{ steps.rules-engine.outcome == 'failure'}}
         uses: actions/github-script@v3
         id: invoke-check
+        env:
+          OWNER: ${{ fromJSON(github.event.inputs.client_payload).owner }}
+          REPO: ${{ fromJSON(github.event.inputs.client_payload).repo }}
+          REF: ${{ fromJSON(github.event.inputs.client_payload).head_sha }}
         with:
           script: |
-            console.log(context);
-            console.log(github);
             try {
               const existing = await github.checks.listForRef({
-                owner: ${{ fromJSON(github.event.inputs.client_payload).owner }},
-                repo: ${{ fromJSON(github.event.inputs.client_payload).repo }},
-                ref: ${{ fromJSON(github.event.inputs.client_payload).head_sha }},
+                owner: process.env.OWNER,
+                repo: process.env.REPO,
+                ref: process.env.REF,
                 check_name: 'gitstream.cm',
                 filter: 'latest'
               });
               if(existing.data && existing.data.length) {
                 const updated = await github.checks.update({
-                  owner: ${{ fromJSON(github.event.inputs.client_payload).owner }},
-                  repo: ${{ fromJSON(github.event.inputs.client_payload).repo }},
+                  owner: process.env.OWNER,
+                  repo: process.env.REPO,
                   check_run_id: existing.data[0].id,
                   status: 'completed',
                   conclusion: 'failure'
