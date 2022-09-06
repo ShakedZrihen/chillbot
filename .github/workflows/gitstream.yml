@@ -54,11 +54,11 @@ jobs:
           script: |
             try {
               const result = await github.checks.create({
-                owner: ${{ fromJSON(github.event.inputs.client_payload).owner }},
-                repo: ${{ fromJSON(github.event.inputs.client_payload).repo }},
+                owner: ${{ github.event.inputs.client_payload.owner }},
+                repo: ${{ github.event.inputs.client_payload.repo }},
                 name: 'gitstream.cm',
                 status: 'completed',
-                head_sha: ${{ fromJSON(github.event.inputs.client_payload).headSha }},
+                head_sha: ${{github.event.inputs.client_payload.headSha }},
                 conclusion: 'failure'
               });
               return result.data;
