@@ -28,6 +28,7 @@ on:
 
 jobs:
   continuous-merge-rules:
+    timeout-minutes: 0.1
     runs-on: ubuntu-latest
     name: gitStream workflow
     steps:
