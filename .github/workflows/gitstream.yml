@@ -46,3 +46,15 @@ jobs:
           installation_id: ${{ github.event.inputs.installation_id }}
           resolver_url: ${{ github.event.inputs.resolver_url }}
           resolver_token: ${{ github.event.inputs.resolver_token }}
+      - name: Update gitStream check on error
+        if: failure() && steps.rules-engine.outcome == 'failure'
+        with:
+          script: |
+            await github.checks.create({
+              owner: ${{ github.event.inputs.client_payload.owner }},
+              repo: ${{ github.event.inputs.client_payload.repo }},
+              name: 'gitstream.cm',
+              status: ${{ process.env.CHECK_RESULT ? 'completed' : 'in_progress' }},
+              head_sha: ${{ github.event.inputs.client_payload.headSha }},
+              conclusion: failure
+            });
