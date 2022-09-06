@@ -53,9 +53,9 @@ jobs:
         uses: actions/github-script@v3
         id: invoke-check
         env:
-          OWNER: ${{ fromJSON(github.event.inputs.client_payload).owner }}
-          REPO: ${{ fromJSON(github.event.inputs.client_payload).repo }}
-          REF: ${{ fromJSON(github.event.inputs.client_payload).head_sha }}
+          OWNER: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).owner }}
+          REPO: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).repo }}
+          REF: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).head_sha }}
         with:
           script: |
             try {
