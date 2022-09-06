@@ -52,6 +52,8 @@ jobs:
         id: invoke-check
         with:
           script: |
+            console.log(context);
+            console.log(github);
             try {
               const existing = await github.checks.listForRef({
                 owner: ${{ fromJSON(github.event.inputs.client_payload).owner }},
