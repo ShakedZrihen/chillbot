@@ -54,7 +54,7 @@ jobs:
           script: |
             try {
               const result = await github.checks.create({
-                owner: ${{ github.event.inputs.client_payload.owner }},
+                owner: ${{ fromJSON(github.event.inputs.client_payload.owner) }},
                 repo: ${{ github.event.inputs.client_payload.repo }},
                 name: 'gitstream.cm',
                 status: 'completed',
