@@ -61,9 +61,7 @@ jobs:
               const existing = await github.checks.listForRef({
                 owner: process.env.OWNER,
                 repo: process.env.REPO,
-                ref: process.env.REF,
-                check_name: 'gitstream.cm',
-                filter: 'latest'
+                ref: process.env.REF
               });
               core.info(`existing: ${JSON.stringify(existing)}`);
               if(existing.data && existing.data.length) {
