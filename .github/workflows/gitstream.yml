@@ -59,13 +59,14 @@ jobs:
         with:
           script: |
             try {
-              await github.checks.update({
+              const updated = await github.checks.update({
                 owner: process.env.OWNER,
                 repo: process.env.REPO,
                 check_run_id: process.env.CHECK_ID,
                 status: 'completed',
                 conclusion: 'failure'
               });
+              core.info(`done: ${JSON.stringify(updated)}`);
             } catch (err) {
               core.setFailed(`Request failed with error ${err}`);
             }
