@@ -35,6 +35,29 @@ jobs:
         run: |
           echo "${{ github.event.inputs.client_payload }}"
         shell: bash
+      - name: Create check
+        uses: actions/github-script@v3
+        id: create-check
+        env:
+          OWNER: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).owner }}
+          REPO: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).repo }}
+          REF: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).headSha }}
+        with:
+          script: |
+            try {
+              const result = await github.checks.create({
+                owner: process.env.OWNER,
+                repo: process.env.REPO,
+                name: 'gitStream.cm',
+                status: 'completed',
+                conclusion: 'success'
+                head_sha: process.env.REF
+              });
+              return result.data;
+              core.info(`result: ${JSON.stringify(result)}`);
+            } catch (err) {
+              core.setFailed(`Request failed with error ${err}`);
+            }
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v1
         id: rules-engine
@@ -55,18 +78,27 @@ jobs:
           OWNER: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).owner }}
           REPO: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).repo }}
           REF: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).headSha }}
-          CHECK_ID: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).gitstreamGatesCheckId }}
         with:
           script: |
             try {
-              const updated = await github.checks.update({
+              const existing = await github.checks.listForRef({
                 owner: process.env.OWNER,
                 repo: process.env.REPO,
-                check_run_id: process.env.CHECK_ID,
-                status: 'completed',
-                conclusion: 'failure'
+                ref: process.env.REF,
+                check_name: 'gitStream.cm',
+                filter: 'latest'
               });
-              core.info(`done: ${JSON.stringify(updated)}`);
+              
+              if(existing.data && existing.data.length) {
+                const updated = await github.checks.update({
+                  owner: process.env.OWNER,
+                  repo: process.env.REPO,
+                  check_run_id: existing.data[0].id,
+                  status: 'completed',
+                  conclusion: 'failure'
+                });
+                core.info(`done: ${JSON.stringify(updated)}`);
+              }
             } catch (err) {
               core.setFailed(`Request failed with error ${err}`);
             }
