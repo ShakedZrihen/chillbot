@@ -37,5 +37,5 @@ export const gitStreamApproved = approvals => {
 export const extractOwnerAndRepoFromRepositoryName = fullname => {
   const owner = fullname?.split("/")[0]
   const repo = fullname?.split('/')[1]
-  return { owner, repo }
+  return {owner, repo}
 };
