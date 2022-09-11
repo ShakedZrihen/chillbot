@@ -29,39 +29,11 @@ on:
 jobs:
   continuous-merge-rules:
     runs-on: ubuntu-latest
-    name: gitStream workflow
+    name: gitStream automation
     steps:
-      - name: Echo payload
-        run: |
-          echo "${{ github.event.inputs.client_payload }}"
-        shell: bash
-      - name: Create check
-        uses: actions/github-script@v3
-        id: create-check
-        env:
-          OWNER: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).owner }}
-          REPO: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).repo }}
-          REF: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).headSha }}
-        with:
-          script: |
-            try {
-              const result = await github.checks.create({
-                owner: process.env.OWNER,
-                repo: process.env.REPO,
-                name: 'gitStream.cm',
-                status: 'completed',
-                conclusion: 'success'
-                head_sha: process.env.REF
-              });
-              return result.data;
-              core.info(`result: ${JSON.stringify(result)}`);
-            } catch (err) {
-              core.setFailed(`Request failed with error ${err}`);
-            }
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v1
         id: rules-engine
-        continue-on-error: true
         with:
           full_repository: ${{ github.event.inputs.full_repository }}
           head_ref: ${{ github.event.inputs.head_ref }}
@@ -70,35 +42,3 @@ jobs:
           installation_id: ${{ github.event.inputs.installation_id }}
           resolver_url: ${{ github.event.inputs.resolver_url }}
           resolver_token: ${{ github.event.inputs.resolver_token }}
-      - name: Update gitStream check on error
-        if: ${{ steps.rules-engine.outcome == 'failure'}}
-        uses: actions/github-script@v3
-        id: invoke-check
-        env:
-          OWNER: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).owner }}
-          REPO: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).repo }}
-          REF: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).headSha }}
-        with:
-          script: |
-            try {
-              const existing = await github.checks.listForRef({
-                owner: process.env.OWNER,
-                repo: process.env.REPO,
-                ref: process.env.REF,
-                check_name: 'gitStream.cm',
-                filter: 'latest'
-              });
-              
-              if(existing.data && existing.data.length) {
-                const updated = await github.checks.update({
-                  owner: process.env.OWNER,
-                  repo: process.env.REPO,
-                  check_run_id: existing.data[0].id,
-                  status: 'completed',
-                  conclusion: 'failure'
-                });
-                core.info(`done: ${JSON.stringify(updated)}`);
-              }
-            } catch (err) {
-              core.setFailed(`Request failed with error ${err}`);
-            }
