@@ -25,18 +25,17 @@ export const isConclusionUpdateNedded = (
 };
 
 export const allApprovalsGitstream = approvals => {
-  return (
-    approvals.length &&
-    approvals.map(({ user }) => user.id).every((id: number) => id === Number(GH_APP_USER_ID))
+    return (
+    approvals.length && approvals.map(({ user }) => user.id).every((id: number) => id === Number(GH_APP_USER_ID))
   );
 };
 
 export const gitStreamApproved = approvals => {
-  return approvals.length && approvals.map(({ user }) => user.id).includes(Number(GH_APP_USER_ID));
+    return approvals.length && approvals.map(({user}) => user.id).includes(Number(GH_APP_USER_ID));
 };
 
 export const extractOwnerAndRepoFromRepositoryName = fullname => {
-  const owner = fullname?.split('/')[0];
-  const repo = fullname?.split('/')[1];
+  const owner = fullname?.split("/")[0]
+  const repo = fullname?.split('/')[1]
   return { owner, repo }
 };
