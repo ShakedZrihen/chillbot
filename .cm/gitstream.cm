@@ -1,17 +1,1 @@
-manifest:
-  version: 1.0
 
-checks:
-  change:
-    is:
-      formatting_only: {{ source.diff.files | allFormattingChange }}
-    
-automations:
-  approve_reformatting:
-    if:
-      - {{ checks.change.is.formatting_only }}
-    run: 
-      - action : approve@v1
-      - action : add-labels@v1
-        args:
-          labels: ['formatting']
