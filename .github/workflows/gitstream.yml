@@ -28,13 +28,10 @@ on:
 
 jobs:
   continuous-merge-rules:
-    timeout-minutes: 1
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     name: gitStream automation
     steps:
-      - name: sleep
-        run: |
-          sleep 70
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v1
         id: rules-engine
