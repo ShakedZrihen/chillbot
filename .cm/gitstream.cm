@@ -17,6 +17,9 @@ automations:
     if:
       - {{ checks.size.is.small }}
     run:
+      - action: add-labels@v1
+        args:
+          labels: ['hello']
       - action: merge@v1
         args:
           squash_on_merge: true
