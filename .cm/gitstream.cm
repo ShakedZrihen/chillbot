@@ -16,5 +16,5 @@ automations:
       - action: request-changes@v1
         args:
           comment: |
-            only approving 1 files
+            only approving 1 files: {{(files | length)}}
   
