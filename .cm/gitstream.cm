@@ -6,12 +6,12 @@ manifest:
 automations:
   x-small:
     if:
-      - {{ (files | length <= 1)
+      - {{ (files | length <= 1) }}
     run: 
       - action: approve@v1
   large_pr:
     if:
-     - {{ (files | length > 1)
+     - {{ (files | length > 1) }}
     run: 
       - action: request-changes@v1
         args:
