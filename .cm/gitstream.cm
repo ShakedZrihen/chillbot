@@ -33,20 +33,19 @@ automations:
       - action: add-labels@v1
         args:
           labels: ['formatting']
-  mark_docs:
+  large_pr:
     if:
-      # Check for every changed file if is a document file. The allDocs filter checks for 
-      # common file extensions used for documents.
-      # Read more on [isformattingchange](https://linear-b.github.io/gitstream-mkdocs/23_gitstream-filters/#alldocs-filter)
-      - {{ files | allDocs }}
+     - {{ (files | length > 1)
     run: 
       - action: request-changes@v1
         args:
           comment: |
-            You have used deprected API, use `newFetch` instead.
-      - action: add-labels@v1
-        args:
-          labels: ['docs']
+            only approving 1 files
+  x_x_small_prs:
+    if:
+     - {{ (files | length <= 1)
+    run: 
+      - action: approve@v1
   mark_tests:
     if:
       # Check for every changed file if is a test file. The allTests filter checks for 
