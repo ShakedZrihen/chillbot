@@ -4,11 +4,6 @@ manifest:
   version: 1.0
 
 automations:
-  x-small:
-    if:
-      - {{ (files | length <= 1) }}
-    run: 
-      - action: approve@v1
   large_pr:
     if:
      - {{ (files | length > 1) }}
