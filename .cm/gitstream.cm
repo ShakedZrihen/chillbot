@@ -4,6 +4,13 @@ manifest:
   version: 1.0
 
 automations:
+  senior_review:
+    if:
+      - {{ (files | length <= 1) }}
+    run:
+      - action: require-reviewers@v1
+        args:
+          reviewers: ['yeelali14']
   x-small:
     if:
       - {{ (files | length <= 1) }}
