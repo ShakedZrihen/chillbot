@@ -1,4 +1,4 @@
-import { CheckConclusion } from './consts';
+import { CheckConclusion } from "./consts";
 import { GH_APP_USER_ID } from "./env";
 
 /**
