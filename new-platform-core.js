@@ -20,29 +20,22 @@ export const isConclusionUpdateNedded = (
   return (
     !currentConclusion ||
     (currentConclusion !== CheckConclusion.failure &&
-      ![(CheckConclusion.neutral, CheckConclusion.skipped)].includes(
-        candidateConclusion
-      ))
+      ![(CheckConclusion.neutral, CheckConclusion.skipped)].includes(candidateConclusion))
   );
 };
 
-export const allApprovalsGitstream = (approvals) => {
+export const allApprovalsGitstream = approvals => {
   return (
     approvals.length &&
-    approvals
-      .map(({ user }) => user.id)
-      .every((id: number) => id === Number(GH_APP_USER_ID))
+    approvals.map(({ user }) => user.id).every((id: number) => id === Number(GH_APP_USER_ID))
   );
 };
 
-export const gitStreamApproved = (approvals) => {
-  return (
-    approvals.length &&
-    approvals.map(({ user }) => user.id).includes(Number(GH_APP_USER_ID))
-  );
+export const gitStreamApproved = approvals => {
+  return approvals.length && approvals.map(({ user }) => user.id).includes(Number(GH_APP_USER_ID));
 };
 
-export const extractOwnerAndRepoFromRepositoryName = (fullname) => {
+export const extractOwnerAndRepoFromRepositoryName = fullname => {
   const owner = fullname?.split('/')[0];
   const repo = fullname?.split('/')[1];
   return { owner, repo };
