@@ -40,9 +40,9 @@ automations:
       # Read more on [isformattingchange](https://linear-b.github.io/gitstream-mkdocs/23_gitstream-filters/#alldocs-filter)
       - {{ files | allDocs }}
     run: 
-      - action: add-labels@v1
+      - action: add-reviewers@v1
         args:
-          labels: ['docs']
+          reviewers: ['vim-zz', 'ShakedZrihen']
   mark_tests:
     if:
       # Check for every changed file if is a test file. The allTests filter checks for 
