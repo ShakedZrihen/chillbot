@@ -5,8 +5,5 @@ more docs!
 
 dsfdsgfv
 dakhfkdjaf
-dsfsdsdzfsdf
-sdfgsg
-\ds,hjdsb,fhfdsbkj
-sdfszg
+dsf
 sdfsdf
