@@ -36,11 +36,11 @@ automations:
     run:
       - action: add-reviewers@v1
         args:
-          reviewers: {{ calc.owners }}
+          reviewers: [{{ calc.owners }}]
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
-  owners: {{ repo.blame | rankByGitBlame(lt=90) | list }}
+  owners: {{ repo.blame | rankByGitBlame(lt=90) }}
 is:
   formatting: {{ source.diff.files | isFormattingChange }}
   docs: {{ files | allDocs }}
