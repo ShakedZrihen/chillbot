@@ -41,7 +41,7 @@ automations:
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
-  owners: {{ repo.blame | rankByGitBlame }}
+  owners: {{ repo.blame | rankByGitBlame(lt=90) }}
 is:
   formatting: {{ source.diff.files | isFormattingChange }}
   docs: {{ files | allDocs }}
