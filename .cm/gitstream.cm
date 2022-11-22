@@ -3,11 +3,46 @@
 manifest:
   version: 1.0
 
+# The `automations` section includes a list of automation that applies 
+# to the repository in which gitStream is installed. Each automation has an 
+# `if` key with a list of the necessary assertions, as well as a `run` key with a
+# list of all actions. All the listed assertions need to pass in order 
+# for the following actions to be executed (there is AND relation between conditions).
+
+# Each automation under the `automations` section is independent of the others. 
+# Every time a PR is opened or changed, the automation's conditions are evaluated (the `if`). 
+# The actions under `run` are executed one by one if all the conditions pass. 
+
+# Conditions consists of an expression, which are wrapped with double curly braces, and 
+# includes a context variable like `files` and filter functions like `length`. Filters 
+# functions are essentially functions that can be applied to context variables. They are 
+# called with a pipe operator (|) and can take arguments. Read more on https://docs.gitstream.cm
+
 automations:
-  mark_docs:
+  # This is the name of the review automation. You can use whatever name, a meaningful name 
+  # will help to identify it in the future. Each automation name in this file should be unique.
+  estimated_time_to_review:
     if:
-      - {{ files | allDocs }}
-    run: 
-      - action: set-required-approvals@v1
+      - true
+    run:
+      - action: add-label@v1
         args:
-          approvals: 2
+          label: "{{ calc.etr }} min review"
+          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
+
+  assign_code_editors:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            owners: {{ calc.owners | dump }}
+
+calc:
+  etr: {{ branch | estimatedReviewTime }}
+  owners: {{ repo.blame | rankByGitBlame(gt=25) }}
+is:
+  formatting: {{ source.diff.files | isFormattingChange }}
+  docs: {{ files | allDocs }}
+  tests: {{ files | allTests }}
