@@ -36,7 +36,7 @@ automations:
     run:
       - action: add-reviewers@v1
         args:
-          reviewers: {{ calc.owners | list }}
+          reviewers: [{{ calc.owners }}]
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
