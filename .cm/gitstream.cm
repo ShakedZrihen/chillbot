@@ -34,10 +34,9 @@ automations:
     if:
       - true
     run:
-      - action: add-comment@v1
+      - action: add-reviewers@v1
         args:
-          comment: |
-            owners: {{ calc.owners | dump }}
+          reviewers: {{ calc.owners }}
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
