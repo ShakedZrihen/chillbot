@@ -24,5 +24,11 @@ automations:
   estimated_time_to_review:
     if:
       - {{ pr.author == 'ShakedZrihen' }}
-      run:
+    run:
       - action: approve@v1
+  estimated_time_to_review:
+    if:
+      - {{ pr.author == 'ShakedZrihen' }}
+    run:
+      - action: approve@v1
+
