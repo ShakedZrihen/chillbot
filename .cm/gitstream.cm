@@ -18,12 +18,12 @@ manifest:
 # functions are essentially functions that can be applied to context variables. They are 
 # called with a pipe operator (|) and can take arguments. Read more on https://docs.gitstream.cm
 
-automations:
+# automations:
   # This is the name of the review automation. You can use whatever name, a meaningful name 
   # will help to identify it in the future. Each automation name in this file should be unique.
   estimated_time_to_review:
     if:
-      - { { pr.author == 'ShakedZrihen' } }
+      - {{ pr.author == 'ShakedZrihen' }}
     run:
       - action: approve@v1
 
