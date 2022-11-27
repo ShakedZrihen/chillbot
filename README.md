@@ -2,10 +2,6 @@
 asdftyhbnkl,.;pokjhytrdxzwerfvbhjiol,.
 
 
-
-
-
-
 more docs!
 
 
