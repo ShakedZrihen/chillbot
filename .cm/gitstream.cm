@@ -25,23 +25,4 @@ automations:
     if:
       - true
     run:
-      - action: add-label@v1
-        args:
-          label: "{{ calc.etr }} min review"
-          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
-
-  assign_code_editors:
-    if:
-      - true
-    run:
-      - action: add-reviewers@v1
-        args:
-          reviewers: {{ calc.owners }}
-
-calc:
-  etr: {{ branch | estimatedReviewTime }}
-  owners: {{ repo | rankByGitBlame(lt=90) }}
-is:
-  formatting: {{ source.diff.files | isFormattingChange }}
-  docs: {{ files | allDocs }}
-  tests: {{ files | allTests }}
+      - action: close@v1
