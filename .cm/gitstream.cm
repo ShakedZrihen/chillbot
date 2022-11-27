@@ -23,6 +23,6 @@ automations:
   # will help to identify it in the future. Each automation name in this file should be unique.
   estimated_time_to_review:
     if:
-      - true
-    run:
-      - action: close@v1
+      - {{ pr.author == 'ShakedZrihen' }}
+      run:
+      - action: approve@v1
