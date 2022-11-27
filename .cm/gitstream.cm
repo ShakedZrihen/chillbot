@@ -1,10 +1,8 @@
 automations:
   senior_review:
     if:
-      - false
+      - {{ files | match(regex=r/src\/ui\//) | some }}
     run:
-      - action : update-check@v1
+      - action: require-reviewers@v1
         args:
-          check_name: cypress-e2e
-          status: completed
-          conclusion: success
+          blabla: ['popeye', 'olive']
