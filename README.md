@@ -1,12 +1,1 @@
-# Chillbot
-asdftyhbnkl,.;pokjhytrdxzwerfvbhjiol,.
-
-
-
-more docs!
-
-
-dsfdsgfv
-dakhfkdj
-dfsa
-kjjkh
+test errors
