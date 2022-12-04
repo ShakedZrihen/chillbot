@@ -12,7 +12,6 @@ automations:
     run: 
       - action: add-label@v1
         args:
-          labels: 'docs'
   mark_tests:
     if:
       - {{ files | allTests }}
