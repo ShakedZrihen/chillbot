@@ -8,7 +8,4 @@ more docs!
 
 dsfdsgfv
 dakhfkdkjjkh-k
-kk
-ff
 
-gg
