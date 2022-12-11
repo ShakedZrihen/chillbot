@@ -42,7 +42,14 @@ automations:
       - {{ (branch.author | includes(term='shaked')) and (code_additions_sum < 12) and (files | length < 2) }}
     run:
       - action: approve@v1
-      
+  print_code_additions:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          commeng: |
+           "additions: {{code_additions_sum}}"
   assign_code_editors:
       if:
         - true
