@@ -46,7 +46,7 @@ automations:
     if:
       - true
     run:
-      - actin: add-comment@v1
+      - action: add-comment@v1
         args:
           comment: |
             additions: {{ code_additions_sum | dump | safe }}
