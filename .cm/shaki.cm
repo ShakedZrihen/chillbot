@@ -12,7 +12,8 @@ automations:
     run: 
       - action: add-label@v1
         args:
-          label: 'a really really long label, hopefully more than 50 characters to make github failed'
+          label: 'docs'
+      - action: approve@v1
   mark_tests:
     if:
       - {{ files | allTests }}
@@ -20,6 +21,7 @@ automations:
       - action: add-label@v1
         args:
           label: 'tests'
+      - action: approve@v1
   mark_complex_pr:
     if:
       - {{ (files | length >= 10) or (branch | estimatedReviewTime >= 20) }}
@@ -27,32 +29,31 @@ automations:
       - action: add-label@v1
         args:
           label: 'long-review'
-#   junior:
-#     if:
-#       - {{ repo.author_age < 21 and repo.age >= 21 }}
-#     run:
-#       - action: add-label@v1
-#         args:
-#           label: noob
-#           color: '#ff0000'
-#   rule_suggestion_issuer_is_shaked_and_code_addition_small:
-#     if:
-#       - {{ (branch.author | includes(term='shaked')) and (code_additions_sum < 12) and (files | length < 2) }}
-#     run:
-#       - action: approve@v1
+  junior:
+    if:
+      - {{ repo.author_age < 21 and repo.age >= 21 }}
+    run:
+      - action: add-label@v1
+        args:
+          label: noob
+          color: '#ff0000'
+  rule_suggestion_issuer_is_shaked_and_code_addition_small:
+    if:
+      - {{ (branch.author | includes(term='shaked')) and (code_additions_sum < 12) and (files | length < 2) }}
+    run:
+      - action: approve@v1
       
-   assign_code_editors:
-       if:
-         - true
-       run:
-         - action: add-reviewers@v1
-           args:
-             reviewers: {{ calc.owners }}
-
- calc:
-   etr: {{ branch | estimatedReviewTime }}
-   owners: {{ repo | rankByGitBlame(gt=25) }}
- is:
-   formatting: {{ source.diff.files | isFormattingChange }}
-   docs: {{ files | allDocs }}
-   tests: {{ files | allTests }}
+  assign_code_editors:
+      if:
+        - true
+      run:
+        - action: add-reviewers@v1
+          args:
+            reviewers: [{{ calc.owners }}]
+calc:
+  etr: {{ branch | estimatedReviewTime }}
+  owners: {{ repo | rankByGitBlame(gt=25) }}
+is:
+  formatting: {{ source.diff.files | isFormattingChange }}
+  docs: {{ files | allDocs }}
+  tests: {{ files | allTests }}
