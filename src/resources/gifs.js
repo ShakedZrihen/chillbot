@@ -9,4 +9,4 @@ export default [
   "https://media3.giphy.com/media/ZFo9Jf12rYxWwr1mFd/source.gif",
 ];
 
-// TODO: USE this gifs instead of hard coded
+console.log("hello there");
