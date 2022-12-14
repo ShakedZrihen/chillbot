@@ -9,4 +9,4 @@ export default [
   "https://media3.giphy.com/media/ZFo9Jf12rYxWwr1mFd/source.gif",
 ];
 
-console.log("hello there");
+console.log("hello gitStream");
