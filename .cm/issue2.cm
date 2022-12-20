@@ -87,12 +87,19 @@ automations:
       - action: add-reviewers@v1
         args:
           team_reviewers: [snowflake-infrastructure]
+          
+   workerb:
+    if:
+      - {{ is.workerb_description }}
+    run:
+      - action: approve@v1
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
 is:
   formatting: {{ source.diff.files | isFormattingChange }}
   docs: {{ files | allDocs }}
+  workerb_description: {{ pr.description | includes(list=['workerB']) }}
   tests: {{ files | allTests }}
   terragrunt: {{ files | match(regex=r/(...)\/terragrunt.hcl/) | some }}
   admin: {{ pr.author | includes(list=['ianwesleyarmstrong']) }}
