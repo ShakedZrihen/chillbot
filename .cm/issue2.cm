@@ -13,7 +13,6 @@ automations:
           comment: |
             Welcome @{{ pr.author }}!
 
-
   estimated_time_to_review:
     if:
       - true
