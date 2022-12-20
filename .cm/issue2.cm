@@ -9,7 +9,7 @@ automations:
       - true
     run:
       - action: add-comment@v1
-         args:
+        args:
           comment: |
             {{ repo.contributors | isFirstCommit(branch.author) }}!
       - action: add-comment@v1
