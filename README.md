@@ -1,5 +1,6 @@
 # Chillbot
-asdftyhbnkl,.;pokjhy
+asdftyhbnkl,.
+;pokjhy
 
 
 trdxzwerfvbhjiol,.
