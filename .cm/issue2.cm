@@ -88,7 +88,7 @@ automations:
         args:
           team_reviewers: [snowflake-infrastructure]
           
-   workerb:
+  workerb:
     if:
       - {{ is.workerb_description }}
     run:
