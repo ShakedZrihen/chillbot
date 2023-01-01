@@ -1,0 +1,9 @@
+automations:
+  comment_n_of_files:
+    if:
+      - true
+    run: 
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ files | length }}
