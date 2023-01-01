@@ -11,5 +11,3 @@ dsfdsgfv
 dfsa
 kjjkh
 ff
-hi
-capara
