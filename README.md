@@ -1,6 +1,7 @@
 # Chillbot
 asdftyhbnkl,.;
-pokjhytrdxzwerfvbhjiol,
+pokjhytrd
+xzwerfvbhjiol,
 
 
 more docs!
