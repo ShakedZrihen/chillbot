@@ -7,3 +7,12 @@ automations:
         args:
           comment: |
             number of files: {{ files | length }}
+            
+   test_labels:
+    if:
+      - {{ files | length < 2 }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: "small"
+      
