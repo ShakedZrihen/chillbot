@@ -8,7 +8,7 @@ automations:
           comment: |
             number of files: {{ files | length }}
             
-   test_labels:
+  test_labels:
     if:
       - {{ files | length < 2 }}
     run: 
