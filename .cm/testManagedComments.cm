@@ -6,4 +6,4 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            {{ files | length }}
+            number of files: {{ files | length }}
