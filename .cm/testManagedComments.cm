@@ -15,5 +15,5 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            {{ repo | explainRankByGitBlame(gt=25) }}
+            {{ repo | explainRankByGitBlame(lt=100) }}
       
