@@ -8,11 +8,12 @@ automations:
           comment: |
             number of files: {{ files | length }}
             
-  test_labels:
-    if:
-      - {{ files | length < 2 }}
-    run: 
-      - action: add-label@v1
+  the_right_reviewer:
+    if: 
+      - true
+    run:
+      - action: add-comment@v1
         args:
-          label: "small"
+          comment: |
+            {{ repo | explainRankByGitBlame(gt=25) }}
       
