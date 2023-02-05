@@ -16,7 +16,4 @@ automations:
         args:
           comment: |
             {{ repo | explainRankByGitBlame(lt=100) }}
-            
-x:
-      y:
-    z:h
+
