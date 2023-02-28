@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap");
+
+#songHugBody {
+  background-color: #121213;
+}
+
+#songHugBody::before {
+  opacity: 1;
+}
+
+.songHugFrame {
+  position: relative;
+  margin: 0 8px;
+}
