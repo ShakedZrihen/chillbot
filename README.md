@@ -1,7 +1,5 @@
 # Chillbot
 asdftyhbnkl,.;pokjhytrdxzwerfvbhjiol,.
-Skip the drama
-
 more docs!
 
 
