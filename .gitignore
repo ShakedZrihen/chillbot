@@ -17,6 +17,7 @@
 .DS_Store
 .env.local
 .env.development.local
+#/src/consts.js
 .env.test.local
 .env.production.local
 .eslintcache
