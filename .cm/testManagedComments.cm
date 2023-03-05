@@ -11,6 +11,30 @@ automations:
         args:
           comment: |
             hi
+  the_right_reviewer:
+    if: 
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ repo | explainRankByGitBlame(gt=25) }}
+      
+  senior_review:
+    if:
+      - true
+    run:
+      - action: require-reviewers@v1
+        args:
+          reviewers: ['orielz', 'Fadikhayo1995', 'KerenLinearB', 'flomermer']
+  explain_expert_reviewer:
+    if: 
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ repo | explainExpertReviewer(gt=10) }}
 
 # To simplify the automation, this calculation is placed under a unique YAML key.
 # The result is is assigned to `calc.etr` which is used in the automation above.
