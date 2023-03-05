@@ -1,3 +1,5 @@
+# -*- mode: yaml -*-
+
 automations:
   estimated_time_to_review:
     if:
@@ -19,14 +21,7 @@ automations:
         args:
           comment: |
             {{ repo | explainRankByGitBlame(gt=25) }}
-      
-  senior_review:
-    if:
-      - true
-    run:
-      - action: require-reviewers@v1
-        args:
-          reviewers: ['orielz', 'Fadikhayo1995', 'KerenLinearB', 'flomermer']
+            
   explain_expert_reviewer:
     if: 
       - true
