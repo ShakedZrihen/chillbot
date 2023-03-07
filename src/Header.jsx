@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { NEW_COLOR } from "./theme";
-
+console.log("test");
 const useStyles = makeStyles((theme) => ({
   title: {
     color: NEW_COLOR.TEXT,
