@@ -15,4 +15,3 @@ automations:
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
-
