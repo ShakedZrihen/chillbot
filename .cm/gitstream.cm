@@ -67,7 +67,7 @@ automations:
           comment: |
             Core service update
             (Updates API)
-  senior_review:
+  senior_review_1:
    if:
      - true
    run:
