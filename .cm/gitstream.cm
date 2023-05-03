@@ -50,6 +50,30 @@ automations:
         args:
           label: "missing-jira"
           color: '#F6443B'
+  senior_review:
+    if:
+      - true
+    run:
+      - action: approve@v1
+      - action: require-reviewers@v1
+        args:
+          reviewers: [yeelali14]
+      - action: request-changes@v1
+        args:
+          comment: |
+            You have used deprecated API `oldFetch`, use `newFetch` instead.
+      - action: add-comment@v1
+        args:
+          comment: |
+            Core service update
+            (Updates API)
+  senior_review:
+   if:
+     - true
+   run:
+     - action: add-reviewers@v1
+       args:
+         reviewers: [yeelali14]
 
 # This is used in the `estimated_time_to_review`
 calc:
