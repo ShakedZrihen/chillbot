@@ -35,7 +35,7 @@ automations:
     run: 
       - action: add-label@v1
         args:
-          label: 'deleted-files'
+         label: 'deleted-files'
           color: '#DF9C04'
 
   # Label PRs that are missing references to associated Jira tickets.
