@@ -55,9 +55,9 @@ automations:
       - true
     run:
       - action: approve@v1
-      - action: require-reviewers@v1
+      - action: add-reviewers@v1
         args:
-          reviewers: [yeelali14]
+          reviewers: [ponyponynogi1, yeelali14, ponyponynogi]
       - action: request-changes@v1
         args:
           comment: |
