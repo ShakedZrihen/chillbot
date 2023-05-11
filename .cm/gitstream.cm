@@ -58,6 +58,7 @@ automations:
       - action: add-reviewers@v1
         args:
           reviewers: [ponyponynogi1, yeelali14, ponyponynogi]
+          fail_on_error: false
       - action: request-changes@v1
         args:
           comment: |
