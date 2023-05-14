@@ -74,7 +74,7 @@ automations:
    run:
      - action: add-reviewers@v1
        args:
-         reviewers: [yeelali14]
+         reviewers: [ponyponynogi]
 
 # This is used in the `estimated_time_to_review`
 calc:
