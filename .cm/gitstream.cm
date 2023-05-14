@@ -57,7 +57,7 @@ automations:
       - action: approve@v1
       - action: add-reviewers@v1
         args:
-          team-reviewers: [ponyponynogi1]
+          team_reviewers: [ponyponynogi1]
           fail_on_error: false
       - action: request-changes@v1
         args:
