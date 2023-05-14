@@ -1,3 +1,3 @@
 # Chillbot
 hi!
-- [X] a test
+- [X] a tests
