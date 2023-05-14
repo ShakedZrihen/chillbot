@@ -1,4 +1,4 @@
-name: Wait for 40 seconds
+name: Wait for 50 seconds
 
 on: [push]
 
@@ -6,5 +6,5 @@ jobs:
   wait:
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for 40 seconds
-        run: sleep 40
+      - name: Wait for 50 seconds
+        run: sleep 50
