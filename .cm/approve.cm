@@ -1,0 +1,6 @@
+automations:
+  small_change:
+    if:
+      - true
+    run:
+      - action: approve@v1
