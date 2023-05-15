@@ -1,3 +1,4 @@
 # Chillbot
 hi!
 hello
+goodbye
