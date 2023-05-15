@@ -1,5 +1,5 @@
 # Chillbot
 hi!
 - [X] a testsy
-- jgjkhjk
+- [X] jgjkhjk
 - [X] a test
