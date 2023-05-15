@@ -30,6 +30,7 @@ on:
         required: false
         default: ''
       debug_mode: 
+        required: false
         default: true
 
 jobs:
