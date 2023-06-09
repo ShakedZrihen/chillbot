@@ -38,6 +38,9 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     name: gitStream workflow automation
+    env:
+      SECRET_WEBEX_TOKEN: "hello"
+      SECRET_SHAKED: "ZOHAR"
     steps:
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@shaked-linbee-311
