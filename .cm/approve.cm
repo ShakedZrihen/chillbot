@@ -3,7 +3,9 @@ automations:
     if:
       - true
     run:
-      - action: add-comment@v1
+      - action: http-request@v1
         args:
-          comment: |
-           {{ env.SHAKED }} test {{ env.WEBEX_TOKEN }}
+          url: https://hooks.slack.com/services/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
+          method: POST
+          headers: "{'Content-type: application/json'}"
+          body: '{"text":"Hello, World!"}'
