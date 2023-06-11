@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     name: gitStream workflow automation
     env:
-      SECRET_WEBEX_TOKEN: "hello"
+      SECRET_WEBEX_TOKEN: {{ secrets.SHAKED }}
       SECRET_SHAKED: "ZOHAR"
     steps:
       - name: Evaluate Rules
