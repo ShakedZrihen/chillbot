@@ -5,7 +5,7 @@ automations:
     run:
       - action: http-request@v1
         args:
-          url: https://hooks.slack.com/services/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
+          url: https://hooks.slack.com/services/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
           method: POST
           headers: '{"Content-type": "application/json"}'
           body: '{"text":"Hello, World!"}'
