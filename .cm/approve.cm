@@ -6,4 +6,4 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-           {{ SECRET_SHAKED }} - {{ SECRET_WEBEX_TOKEN }}
+           {{ env.SHAKED }} - {{ env.WEBEX_TOKEN }}
