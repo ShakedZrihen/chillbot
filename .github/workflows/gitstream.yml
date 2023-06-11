@@ -41,6 +41,7 @@ jobs:
     env:
       WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
       SHAKED: ${{ secrets.SHAKED }}
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
     steps:
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@shaked-linbee-311
