@@ -39,8 +39,8 @@ jobs:
     runs-on: ubuntu-latest
     name: gitStream workflow automation
     env:
-      SECRET_WEBEX_TOKEN: ${{ secrets.SHAKED }}
-      SECRET_SHAKED: "ZOHAR"
+      WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
+      SHAKED: ${{ secrets.SHAKED }}
     steps:
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@shaked-linbee-311
