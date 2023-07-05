@@ -1,4 +1,4 @@
 # Chillbot
 hi!
 - [ ] a testsy
-- [ ] a testsy
+- [X] a testsy
