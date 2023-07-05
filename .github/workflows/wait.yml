@@ -1,0 +1,13 @@
+name: Wait Workflow
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Wait for 15 seconds
+        run: |
+          echo "Waiting for 15 seconds..."
+          sleep 15
+          echo "Wait completed!"
