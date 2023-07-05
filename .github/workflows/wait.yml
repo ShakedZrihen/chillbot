@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Wait for 15 seconds
+      - name: Wait for 30 seconds
         run: |
           echo "Waiting for 15 seconds..."
           sleep 15
