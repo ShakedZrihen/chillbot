@@ -1,4 +1,4 @@
 # Chillbot
 hi!
-- [ ] test
+- [X] test
 - [X] why
