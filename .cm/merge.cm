@@ -54,7 +54,7 @@ automations:
 
 
 has:
-  screenshot_link: {{ pr.description | includes(regex=r/!\[.*\]\(.*(jpg|svg|png|gif|psd).*\)/) }}
+  screenshot_link: {{ pr.description | includes(regex=r/!\[image\]\((https?:\/\/github.*)\)/) }}
   image_uploaded: {{ pr.description | includes(regex=r/<img.*src=.*https:\/\/github.com.*>/) }}
 
 
