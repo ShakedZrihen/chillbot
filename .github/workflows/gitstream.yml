@@ -44,7 +44,7 @@ jobs:
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
     steps:
       - name: Evaluate Rules
-        uses: linear-b/gitstream-github-action@yeela
+        uses: linear-b/gitstream-github-action@eladTag
         id: rules-engine
         with:
           full_repository: ${{ github.event.inputs.full_repository }}
