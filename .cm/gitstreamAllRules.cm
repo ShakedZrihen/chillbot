@@ -70,12 +70,11 @@ automations:
             (Updates API)
   senior_review_1:
    if:
-     - true
+     - {{ pr.author_is_org_member }}
    run:
-     - action: add-reviewers@v1
+     - action: add-label@v1
        args:
-         reviewers: [ponyponynogi]
-         fail_on_error: false
+         label: "author_is_org_member"
 
 # This is used in the `estimated_time_to_review`
 calc:
