@@ -1,15 +1,18 @@
 # -*- mode: yaml -*-
-
 manifest:
   version: 1.0
 
 automations:
-  curl_slack:
+  tester:
+    on:
+      - merge
     if:
-      - true
+      - {{ number_of_tests > 0 }}
     run:
       - action: http-request@v1
         args:
-          url: https://not-exise.url
+          url: {{ env.SLACK_TEAM_FLARE_WEBHOOK }}
           method: "POST"
-          body: '{"text": "Hello world :tada:"}'
+          body: '{"text": ":tada: kudos *{{ pr.author }}* for adding: *{{ number_of_tests }}* to *{{ repo.name }}* :tada:"}'
+  
+number_of_tests: {{ source | countTests }}
