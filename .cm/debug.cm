@@ -2,17 +2,10 @@ manifest:
   version: 1.0
 
 automations:
-    requested_changes:
-        if:
-          - {{ pr.status == 'open' }}
-          - {{ pr.requested_changes | length > 0 }}
-        run:
-          - action: add-label@v1
-            args:
-              label: '🚨 Changes requested'
-              color: '#EC560D'
-          - action: add-comment@v1
-            args:
-              comment: |
-                change_reguests: {{ pr.requested_changes }}
-source: shaked
+  code_experts:
+    if: 
+      - true
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | codeExperts(gt=10) }}
