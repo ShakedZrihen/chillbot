@@ -13,6 +13,6 @@ automations:
         args:
           url: {{ env.SLACK_WEBHOOK }}
           method: "POST"
-          body: '{"text": ":tada: kudos *{{ pr.author }}* for adding: *{{ number_of_tests }}* to *{{ repo.name }}* :tada:"}'
+          body: '{"text": ":tada: kudos *{{ pr.author }}* for adding: *{{ number_of_tests }}* new tests to *{{ repo.name }}* :tada:"}'
   
 number_of_tests: {{ source | countTests }}
