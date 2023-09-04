@@ -54,6 +54,12 @@ describe('Some tests', () => {
     it('Should test something else' ,() => {
     console.log("hi!");
   })
+     it('Should test something else' ,() => {
+    console.log("hi!");
+  })
+    it('Should test something else' ,() => {
+    console.log("hi!");
+  })
 })
 })
 
