@@ -13,6 +13,6 @@ automations:
         args:
           url: https://webhooks.gitstream-dev.cm/analytics
           method: "POST"
-          body: '{"type": "customMetric", "metric_value": {{ number_of_tests }}, "repo_name": "{{ repo.name }}", "repo_owner": "{{ repo.owner }}", "pr_approval": "{{ pr.approvals | first }}", "provider": "github", "pr_owner": "{{ pr.author }}" }'
+          body: '{"type": "customMetric", "metric_name":"tests.added", "metric_value": {{ number_of_tests }}, "repo_name": "{{ repo.name }}", "repo_owner": "{{ repo.owner }}", "pr_approval": "{{ pr.approvals | first }}", "provider": "github", "pr_owner": "{{ pr.author }}" }'
   
 number_of_tests: {{ source | countTests }}
