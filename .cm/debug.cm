@@ -8,4 +8,4 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: {{ sayHello }}
+          comment: {{ sayHelloSync }}
