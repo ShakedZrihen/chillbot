@@ -1,5 +1,5 @@
 module.exports = {
   sayHello: async (callback) => {
-    return callback(`hello from custom filter!`);
+    return callback(null, `hello from custom filter!`);
   }
 };
