@@ -6,6 +6,6 @@ automations:
     if: 
       - true
     run:
-      - action: add-reviewers@v1
+      - action: add-comment@v1
         args:
-          reviewers: {{ repo | codeExperts(gt=10) | sayHello }}
+          comment: {{ sayHello("Pavel") }}
