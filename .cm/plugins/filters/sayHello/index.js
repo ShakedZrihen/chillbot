@@ -1,4 +1,4 @@
 module.exports = () => {
   console.log("hello");
-  return "hello";
+  return "hello From custom filters!";
 }
