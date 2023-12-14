@@ -8,9 +8,9 @@ automations:
     if:
       - true
     run:
-      action: add-comment@v1
-      args:
-        comment: {{ branch.commit.messages | dump | safe }}
+      - action: add-comment@v1
+        args:
+          comment: {{ branch.commit.messages | dump | safe }}
   code_experts:
     if: 
       - true
