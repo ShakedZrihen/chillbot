@@ -10,7 +10,7 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: {{ branch.commit.messages | dump | safe }}
+          comment: {{ branch.commits.messages | dump | safe }}
   code_experts:
     if: 
       - true
