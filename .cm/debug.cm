@@ -2,6 +2,15 @@ manifest:
   version: 1.0
 
 automations:
+  lol:
+    on: 
+      - merge
+    if:
+      - true
+    run:
+      action: add-comment@v1
+      args:
+        comment: {{ branch.commit.messages | dump | safe }}
   code_experts:
     if: 
       - true
