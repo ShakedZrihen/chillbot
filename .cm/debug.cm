@@ -13,8 +13,8 @@ automations:
           comment: {{ branch.commits.messages | dump | safe }}
   code_experts:
     if: 
-      - true
+      - {{ pr.description | includes(list=['gaga']) }}
     run:
       - action: add-comment@v1
         args:
-          comment: {{ pr.description | bananify }}
+          comment: {{ pr.description | helloGaga }}
