@@ -4,5 +4,5 @@ hi!
 - [X] why
 - [X] hello world
 - [X] test
-- [X] why
-- [X] hello world
+- [ ] why
+- [ ] hello world
