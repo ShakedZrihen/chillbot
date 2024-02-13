@@ -5,4 +5,4 @@ hi!
 - [X] hello worlda
 - [X] testa
 - [X] hayushhhh
-- [ ] bye
+- [X] bye
