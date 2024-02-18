@@ -83,7 +83,7 @@ calc:
 # This is used in the `label_deleted_files` automation
 has:
   deleted_files: {{ source.diff.files | map(attr='new_file') | match(term='/dev/null') | some }}
-
+codeExperts: {{ repo | codeExperts(gt=1) }}
 # Evaluates PR titles and descriptions to find strings that match Jira ticket number formatting.
 # This is used in the `jira_ticket` automation.
 jira:
