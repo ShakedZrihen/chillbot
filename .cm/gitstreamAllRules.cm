@@ -13,7 +13,7 @@ automations:
     run:
       - action: add-label@v1
         args:
-          label: "{{ calc.etr }} min review"
+            label: "{{ calc.etr }} min review"
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
 
   # Label PRs that are missing tests.
