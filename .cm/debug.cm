@@ -3,18 +3,10 @@ manifest:
 
 automations:
   lol:
-    on: 
-      - merge
     if:
       - true
     run:
       - action: add-comment@v1
         args:
-          comment: {{ branch.commits.messages | dump | safe }}
-  code_experts:
-    if: 
-      - true
-    run:
-      - action: add-comment@v1
-        args:
-          comment: {{ pr.description | bananify }}
+          comment: |
+            - [ ] test me
