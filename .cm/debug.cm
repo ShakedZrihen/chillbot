@@ -4,7 +4,7 @@ manifest:
 automations:
   lol:
     if:
-      - true
+      - {{ pr.comments | length < 1 }}
     run:
       - action: add-comment@v1
         args:
