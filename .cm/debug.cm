@@ -3,6 +3,8 @@ manifest:
 
 automations:
   lol:
+    on:
+      - comment_edited
     if:
       - true
     run:
