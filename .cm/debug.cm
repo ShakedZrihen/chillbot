@@ -4,7 +4,7 @@ manifest:
 automations:
   lol:
     if:
-      - {{ pr.title | includes(term="shaked" }}
+      - {{ pr.title | includes(term="shaked") }}
     run:
       - action: add-comment@v1
         args:
