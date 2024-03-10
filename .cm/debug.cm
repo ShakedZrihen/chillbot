@@ -3,10 +3,8 @@ manifest:
 
 automations:
   lol:
-    on:
-      - comment_edited
     if:
-      - true
+      - {{ pr.title | includes(term="shaked" }}
     run:
       - action: add-comment@v1
         args:
