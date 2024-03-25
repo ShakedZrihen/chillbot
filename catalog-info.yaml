@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: chillbot
+  description: "chillbot service"
+  tags:
+    - javascript
+    - webex-api
+spec:
+  type: service
+  lifecycle: experimental
+  owner: ShakedZrihen
+  repoUrl: https://github.com/ShakedZrihen/chillbot
