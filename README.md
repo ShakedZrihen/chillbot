@@ -7,4 +7,4 @@ hi!
 - [ ] why
 - [ ] hello world
 
-- [ ] hi
+- [X] hi
