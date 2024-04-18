@@ -35,11 +35,12 @@ const checklistFilter = (empty, branch, files, pr, repo) => {
         }
     ];
 
-    const comment = checks
-        .map(check => `- [${check.condition ? "x" : " "}] ${check.label}`)
-        .join("\n");
+    // const comment = checks
+    //     .map(check => `- [${check.condition ? "x" : " "}] ${check.label}`)
+    //     .join("\n");
+	
     console.log({comment});
-    return "shaked";
+    return checks[0].label;
 };
 
 module.exports = checklistFilter;
