@@ -11,4 +11,5 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
+              test:
               {{ "" | checklist(branch, files, pr, repo) }}
