@@ -39,7 +39,7 @@ const checklistFilter = (empty, branch, files, pr, repo) => {
     //     .map(check => `- [${check.condition ? "x" : " "}] ${check.label}`)
     //     .join("\n");
 	
-    console.log({comment});
+    // console.log({comment});
     return checks[0].label;
 };
 
