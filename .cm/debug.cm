@@ -1,12 +1,13 @@
+# -*- mode: yaml -*-
+
 manifest:
   version: 1.0
 
 automations:
-  lol:
+  checklist: 
     if:
-      - {{ pr.title | includes(term="shaked") }}
+      - true
     run:
       - action: add-comment@v1
         args:
-          comment: |
-            - [ ] test me
+          comment: {{ "" | checklist(branch, files, pr, repo) }}
