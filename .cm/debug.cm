@@ -10,4 +10,5 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: {{ "" | checklist(branch, files, pr, repo) }}
+          comment: |
+              {{ "" | checklist(branch, files, pr, repo) }}
