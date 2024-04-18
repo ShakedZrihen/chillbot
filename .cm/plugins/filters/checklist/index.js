@@ -40,7 +40,7 @@ const checklistFilter = (empty, branch, files, pr, repo) => {
         .join("\n");
 	
     console.log({comment});
-    return comment;
+    return JSON.stringify(comment);
 };
 
 module.exports = checklistFilter;
