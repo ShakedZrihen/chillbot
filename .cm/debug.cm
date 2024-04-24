@@ -17,4 +17,4 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: {{ pr.labels | dump | safe }}
+          comment: "this branch was not excluded, labels: {{ pr.labels | dump | safe }}"
