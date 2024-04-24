@@ -3,10 +3,9 @@
 manifest:
   version: 1.0
 
-on:
-  - label_added
-
 triggers:
+  on:
+    - label_added
   exclude:
     branch:
       - "patch"
