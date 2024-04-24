@@ -3,6 +3,9 @@
 manifest:
   version: 1.0
 
+on:
+  - label_added
+
 automations:
   checklist: 
     if:
@@ -10,5 +13,4 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: |
-              {{ "" | checklist(branch, files, pr, repo) }}
+          comment: {{ pr.labels | dump | safe }}
