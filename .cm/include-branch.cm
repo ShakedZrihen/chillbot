@@ -1,0 +1,20 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+triggers:
+  on:
+    - label_added
+  include:
+    branch:
+      - "patch"
+
+automations:
+  checklist: 
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: "this branch was included"
