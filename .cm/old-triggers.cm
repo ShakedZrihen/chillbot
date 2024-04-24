@@ -13,4 +13,4 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: triggered by commit
+          comment: "triggered by commit"
