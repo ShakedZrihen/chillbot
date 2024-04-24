@@ -9,8 +9,6 @@ triggers:
   exclude:
     branch:
       - "patch"
-     
-  
 
 automations:
   checklist: 
