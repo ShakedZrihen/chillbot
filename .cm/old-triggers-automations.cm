@@ -1,0 +1,15 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  checklist:
+    on:
+      - label_removed
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: "triggered by label removed"
