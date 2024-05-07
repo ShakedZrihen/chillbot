@@ -8,6 +8,7 @@ triggers:
     repository:
       - r/.*bot$/
   exclude:
+    branch:
       - r/.*patch.*/
 
 automations:
