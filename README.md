@@ -1,7 +1,7 @@
 # Chillbot
 hi!
 - [X] test
-- [ ] why
+- [X] why
 - [ ] hello world
 - [ ] test
 - [ ] why
