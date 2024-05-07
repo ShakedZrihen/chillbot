@@ -4,10 +4,10 @@ manifest:
   version: 1.0
 
 triggers:
-  include:
+  exclude:
     repository:
       - r/.*bot$/
-  exclude:
+  include:
     branch:
       - r/.*patch.*/
 
