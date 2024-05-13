@@ -47,6 +47,7 @@ jobs:
         uses: linear-b/gitstream-github-action@stage
         id: rules-engine
         with:
+          DEBUG_MODE: true
           full_repository: ${{ github.event.inputs.full_repository }}
           head_ref: ${{ github.event.inputs.head_ref }}
           base_ref: ${{ github.event.inputs.base_ref }}
