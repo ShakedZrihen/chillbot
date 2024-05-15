@@ -75,7 +75,7 @@ automations:
   # this PR, apply a label indicating the PR was supported by Copilot
   label_copilot_pr:
     if:
-      - {{ pr.comments | filter(attr='commenter', term='gitstream-cm') | filter (attr='content', regex=r/\- \[x\] GitHub Copilot Assisted/) | some}}
+      - {{ pr.comments | filter(attr='commenter', term='gitstream-daveloper') | filter (attr='content', regex=r/\- \[x\] GitHub Copilot Assisted/) | some}}
     run:
       - action: add-label@v1
         args:
