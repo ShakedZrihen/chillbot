@@ -4,7 +4,7 @@ manifest:
   version: 1.0
 
 on:
-  - label_added
+  - comment_added
 
 automations:
   checklist: 
@@ -13,4 +13,4 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: "triggered by label_added"
+          comment: "triggered by comment_added"
