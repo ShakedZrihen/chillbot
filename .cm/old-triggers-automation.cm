@@ -5,11 +5,9 @@ manifest:
 
 automations:
   checklist:
-    on:
-      - label_removed
     if:
       - true
     run:
       - action: add-comment@v1
         args:
-          comment: "triggered by label removed"
+          comment: "add comment"
