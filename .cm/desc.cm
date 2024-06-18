@@ -11,4 +11,7 @@ automations:
       - action: update-description@v1
         args:
           description: |
-             {{ pr.description | replace('"', '', 'g') }}
+             {{ desc | replace('"', '', 'g') }}
+
+
+desc: {{ pr.description }}
