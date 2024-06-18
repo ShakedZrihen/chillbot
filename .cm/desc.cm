@@ -1,0 +1,14 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  update-description: 
+    if:
+      - true
+    run:
+      - action: update-descrition@v1
+        args:
+          description: |
+             {{ pr.description }}
