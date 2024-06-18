@@ -11,5 +11,5 @@ automations:
       - action: update-description@v1
         args:
           description: |
-             {{ pr.description | replace('\"', '', 'g') }}
+             {{ pr.description | replace('^\"', '') | replace('\"$', '') | safe }}
 
