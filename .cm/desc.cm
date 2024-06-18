@@ -8,7 +8,7 @@ automations:
     if:
       - true
     run:
-      - action: update-descrition@v1
+      - action: update-description@v1
         args:
           description: |
              {{ pr.description }}
