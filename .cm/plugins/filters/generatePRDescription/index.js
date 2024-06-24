@@ -1,4 +1,4 @@
-function generatePRDescription(branch) {
+function generatePRDescription(branch, pr) {
   if (process.env[__filename]) {
     return process.env[__filename];
   }
@@ -30,6 +30,7 @@ function generatePRDescription(branch) {
     commits.length ? `- **${type}:**\n${commits.map(msg => `  - ${msg}`).join('\n')}\n` : '';
   
   const addTests = branch.commits.messages.some(message => message.includes('test:')) ? 'X' : ' ';
+  const testedInDev = pr.comments.some(comment => comment.content.includes('/dev')) ? 'X' : ' ';
   console.log({addTests});
   const result = `
 ## Base Branch
@@ -41,7 +42,7 @@ ${Object.entries(commitTypes)
       .join('')}
 
 ## Checklist
- - [ ] Flow Tested on dev
+ - [${testedInDev}] Flow Tested on dev
  - [${addTests}] Add tests  
   `;
 
