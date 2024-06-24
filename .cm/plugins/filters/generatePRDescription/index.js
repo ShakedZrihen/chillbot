@@ -17,7 +17,7 @@ function generatePRDescription(branch) {
     other: []
   };
 
-  branch.commits.messages.forEach(message => {
+  branch.commits.messages.filter(message => message.includes('Merge branch').forEach(message => {
     const match = message.match(/^(feat|fix|chore|docs|style|refactor|perf|test|build|ci):/);
     if (match) {
       commitTypes[match[1]].push(message);
