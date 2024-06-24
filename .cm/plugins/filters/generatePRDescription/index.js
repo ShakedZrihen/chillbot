@@ -30,7 +30,7 @@ function generatePRDescription(branch) {
     commits.length ? `- **${type}:**\n${commits.map(msg => `  - ${msg}`).join('\n')}\n` : '';
   
   const addTests = branch.commits.messages.includes('test:') ? 'X' : ' ';
-
+  console.log({addTests});
   const result = `
 ## Base Branch
 - **Base:** ${branch.base}
