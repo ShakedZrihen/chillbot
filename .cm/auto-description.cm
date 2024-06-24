@@ -6,5 +6,5 @@ automations:
       - action: update-description@v1
         args:
           description: |
-            {{ branch | generatePRDescription | safe }}
+            {{ branch | generatePRDescription | dump | safe }}
 
