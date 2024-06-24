@@ -28,6 +28,8 @@ function generatePRDescription(branch) {
 
   const formatCommitSection = (type, commits) =>
     commits.length ? `- **${type}:**\n${commits.map(msg => `  - ${msg}`).join('\n')}\n` : '';
+  
+  const addTests = branch.commits.messages.includes('test:') ? 'X' : ' ';
 
   const result = `
 ## Base Branch
@@ -38,7 +40,6 @@ ${Object.entries(commitTypes)
       .map(([type, commits]) => formatCommitSection(type, commits))
       .join('')}
 
-const addTests = branch.commits.messages.includes('test:') ? 'X' : ' ';
 ## Checklist
  - [ ] Flow Tested on dev
  - [${addTests}] Add tests  
