@@ -30,13 +30,10 @@ function generatePRDescription(branch) {
     commits.length ? `- **${type}:**\n${commits.map(msg => `  - ${msg}`).join('\n')}\n` : '';
 
   const result = `
-## Pull Request for Branch: ${branch.name}
-
-### Base Branch
+## Base Branch
 - **Base:** ${branch.base}
 
-### Commits
-- **Number of Commits:** ${branch.num_of_commits}
+## Description
 ${Object.entries(commitTypes)
   .map(([type, commits]) => formatCommitSection(type, commits))
   .join('')}
