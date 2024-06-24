@@ -41,7 +41,7 @@ ${Object.entries(commitTypes)
   .join('')}
   `;
 
-  process.env[__filename] = result;
+  process.env[__filename] = Buffer.from(result).toString('base64');
   return Buffer.from(result).toString('base64');;
 
 }
