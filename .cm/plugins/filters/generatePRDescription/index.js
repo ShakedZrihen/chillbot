@@ -33,10 +33,10 @@ function generatePRDescription(branch, pr) {
   const testedInDev = pr.comments.some(comment => comment.content.includes('/dev')) ? 'X' : ' ';
   console.log({addTests});
   const result = `
-## Base Branch
+## Branch Details
 - **Base:** ${branch.base}
 
-## Description
+## What changed ?
 ${Object.entries(commitTypes)
       .map(([type, commits]) => formatCommitSection(type, commits))
       .join('')}
