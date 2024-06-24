@@ -1,11 +1,8 @@
 function generatePRDescription(branch) {
-   if (!process.env[__filename]) {
-    process.env[__filename] = 1;
+   if (process.env[__filename]) {
+    return process.env[__filename];
   }
-   if(process.env[__filename] < 3){
-      process.env[__filename] += 1;
-      return;
-   }
+
   const commitTypes = {
     feat: [],
     fix: [],
@@ -45,7 +42,7 @@ ${Object.entries(commitTypes)
   .join('')}
   `;
 
-  process.env[__filename] = Buffer.from(result).toString('base64');
+  process.env[__filename] = result;
   return result;
 
 }
