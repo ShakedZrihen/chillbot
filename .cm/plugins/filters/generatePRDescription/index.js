@@ -37,6 +37,11 @@ function generatePRDescription(branch) {
 ${Object.entries(commitTypes)
   .map(([type, commits]) => formatCommitSection(type, commits))
   .join('')}
+
+const addTests = branch.commits.messages.includes('test:') ? 'X' : ' ';
+## Checklist
+ - [ ] Flow Tested on dev
+ - [${addTests}] Add tests  
   `;
 
   process.env[__filename] = result;
