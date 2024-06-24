@@ -1,5 +1,5 @@
 function generatePRDescription(branch) {
-   if (process.env[__filename]) {
+  if (process.env[__filename]) {
     return process.env[__filename];
   }
 
@@ -17,7 +17,7 @@ function generatePRDescription(branch) {
     other: []
   };
 
-  branch.commits.messages.filter(message => message.includes('Merge branch').forEach(message => {
+  branch.commits.messages.filter(message => message.includes('Merge branch')).forEach(message => {
     const match = message.match(/^(feat|fix|chore|docs|style|refactor|perf|test|build|ci):/);
     if (match) {
       commitTypes[match[1]].push(message);
@@ -26,7 +26,7 @@ function generatePRDescription(branch) {
     }
   });
 
-  const formatCommitSection = (type, commits) => 
+  const formatCommitSection = (type, commits) =>
     commits.length ? `- **${type}:**\n${commits.map(msg => `  - ${msg}`).join('\n')}\n` : '';
 
   const result = `
@@ -35,8 +35,8 @@ function generatePRDescription(branch) {
 
 ## Description
 ${Object.entries(commitTypes)
-  .map(([type, commits]) => formatCommitSection(type, commits))
-  .join('')}
+      .map(([type, commits]) => formatCommitSection(type, commits))
+      .join('')}
 
 const addTests = branch.commits.messages.includes('test:') ? 'X' : ' ';
 ## Checklist
