@@ -46,7 +46,7 @@ ${Object.entries(commitTypes)
  - [${addTests}] Add tests  
   `;
 
-  process.env[__filename] = result.spit('\n').filter(Boolean).join('\n ');
+  process.env[__filename] = result.spit('\n').filter(Boolean).join('\n    ');
   return result.spit('\n').filter(Boolean).join('\n ');
 
 }
