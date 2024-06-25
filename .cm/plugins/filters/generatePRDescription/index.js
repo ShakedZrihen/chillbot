@@ -47,7 +47,7 @@ ${Object.entries(commitTypes)
   `;
 
   process.env[__filename] = result.split('\n').filter(Boolean).join('\n    ');
-  return result.split('\n').filter(Boolean).join('\n ');
+  return result.split('\n').filter(Boolean).join('\n    ');
 
 }
 
