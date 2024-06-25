@@ -45,9 +45,9 @@ ${Object.entries(commitTypes)
  - [${testedInDev}] Flow Tested on dev
  - [${addTests}] Add tests  
   `;
-
-  process.env[__filename] = result.split('\n').filter(Boolean).join('\n            ');
-  return result.split('\n').filter(Boolean).join('\n            ');
+  const indent = ' ' * 100;
+  process.env[__filename] = result.split('\n').filter(Boolean).join('\n' + indent);
+  return result.split('\n').filter(Boolean).join('\n' + indent);
 
 }
 
