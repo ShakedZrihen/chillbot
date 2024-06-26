@@ -17,6 +17,24 @@ function getAuthHeader(email, token) {
   return `Basic ${Buffer.from(`${email}:${token}`).toString('base64')}`;
 }
 
+const bugCustomFields =  {
+  priority: {
+    id: "3"
+  },
+  customfield_10260: {
+    "id": "10451",
+    "value": "Dev",
+  },
+  customfield_10159: {
+    "id": "10198",
+    "value": "Production",
+  }
+};
+
+const taskCustomFields = {
+  customfield_10258: { "id": "10439", "value": "New Value" }
+};
+
 // Payload creation
 function createPayload(ticketType, summary, description) {
   const MAP_ISSUE_TO_ID = {
@@ -28,22 +46,8 @@ function createPayload(ticketType, summary, description) {
     fields: {
       project: { "id": "10060" }, // LINBEE project ID
       issuetype: MAP_ISSUE_TO_ID[ticketType] ?? MAP_ISSUE_TO_ID.Task,
-      ...(ticketType === 'Task' && {
-        customfield_10258: { "id": "10439", "value": "New Value" }
-      }),
-      ...(ticketType === 'Bug' && {
-        priority: {
-          id: "3"
-        },
-        customfield_10260: {
-          "id": "10451",
-          "value": "Dev",
-        },
-        customfield_10159: {
-          "id": "10198",
-          "value": "Production",
-        }
-      }),
+      ...(ticketType === 'Task' && taskCustomFields),
+      ...(ticketType === 'Bug' && bugCustomFields),
       summary,
       description: {
         "version": 1,
@@ -54,7 +58,7 @@ function createPayload(ticketType, summary, description) {
             "content": [
               {
                 "type": "text",
-                "text": `${description}\n/:\\ Created by gitStream`
+                "text": `${description}\n\n\n/:\\ Created by gitStream`
               }
             ]
           }
