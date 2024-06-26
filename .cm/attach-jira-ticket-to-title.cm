@@ -1,7 +1,7 @@
 automations:
   add_jira_to_title:
     if:
-      - {{ jira_ticket_in_desc and (not has.jira_ticket_in_title) }}
+      - {{ jira_ticket_in_desc and (not has.jira_ticket_in_title) and add_to_title}}
     run:
       - action: update-title@v1
         args:
@@ -11,3 +11,4 @@ automations:
 has:
   jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
 jira_ticket_in_desc: {{ pr.description | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
+add_to_title: {{ pr.description | includes(list=['[X] Add Jira Ticket to PR title', '[x] Add Jira Ticket to PR title']) }}
