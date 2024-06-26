@@ -1,175 +1,127 @@
-const axios = require('axios');
-
-// Configuration
-function getJiraUrl() {
-  return 'https://linearb.atlassian.net';
-}
-
-function getApiEndpoint() {
-  return `${getJiraUrl()}/rest/api/3/issue`;
-}
-
-function getAuthToken() {
-  return process.env.JIRA_API_TOKEN;
-}
-
-function getAuthHeader(email, token) {
-  return `Basic ${Buffer.from(`${email}:${token}`).toString('base64')}`;
-}
-
-const bugCustomFields =  {
-  priority: {
-    id: "3"
-  },
-  customfield_10260: {
-    "id": "10451",
-    "value": "Dev",
-  },
-  customfield_10159: {
-    "id": "10198",
-    "value": "Production",
-  }
-};
-
-const taskCustomFields = {
-  customfield_10258: { "id": "10439", "value": "New Value" }
-};
-
-// Payload creation
-function createPayload(ticketType, summary, description) {
-  const MAP_ISSUE_TO_ID = {
-    Task: { "id": "10026" },
-    Bug: { "id": "10028" }
-  };
-
-  return {
-    fields: {
-      project: { "id": "10060" }, // LINBEE project ID
-      issuetype: MAP_ISSUE_TO_ID[ticketType] ?? MAP_ISSUE_TO_ID.Task,
-      ...(ticketType === 'Task' && taskCustomFields),
-      ...(ticketType === 'Bug' && bugCustomFields),
-      summary,
-      description: {
-        "version": 1,
-        "type": "doc",
-        "content": [
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": `${description}\n\n\n/:\\ Created by gitStream`
-              }
-            ]
-          }
-        ]
-      }
-    }
-  };
-}
-
-// Create JIRA ticket
-async function createJiraTicket(ticketType, summary, description) {
-  const payload = createPayload(ticketType, summary, description);
-
-  try {
-    const response = await axios.post(getApiEndpoint(), payload, {
-      headers: {
-        'Authorization': getAuthHeader('shaked@linearb.io', getAuthToken()),
-        'Content-Type': 'application/json'
-      }
-    });
-    console.log({response});
-    return `${getJiraUrl()}/browse/${response.data.key}`;
-  } catch (error) {
-    console.error('Error creating JIRA ticket:', error);
-    throw error;
-  }
-}
+const createJiraTicket = require('./jira.js');
 
 // Parse commit messages
 function parseCommitMessages(messages) {
-  const commitTypes = {
-    feat: [], fix: [], chore: [], docs: [], style: [], refactor: [],
-    perf: [], test: [], build: [], ci: [], other: []
-  };
+    const commitTypes = {
+        feat: [], fix: [], chore: [], docs: [], style: [], refactor: [],
+        perf: [], test: [], build: [], ci: [], other: []
+    };
 
-  messages.filter(message => !message.includes('Merge branch')).forEach(message => {
-    const match = message.match(/^(feat|fix|chore|docs|style|refactor|perf|test|build|ci):/);
-    if (match) {
-      commitTypes[match[1]].push(message.replace(`${match[1]}:`, '').trim());
-    } else {
-      commitTypes.other.push(message);
-    }
-  });
+    messages.filter(message => !message.includes('Merge branch')).forEach(message => {
+        const match = message.match(/^(feat|fix|chore|docs|style|refactor|perf|test|build|ci):/);
+        if (match) {
+            commitTypes[match[1]].push(message.replace(`${match[1]}:`, '').trim());
+        } else {
+            commitTypes.other.push(message);
+        }
+    });
 
-  return commitTypes;
+    return commitTypes;
 }
 
 // Format commit section
 function formatCommitSection(type, commits) {
-  return commits.length ? `- **${type}:**\n${commits.map(msg => `  - ${msg}`).join('\n')}\n` : '';
+    return commits.length ? `- **${type}:**\n${commits.map(msg => `  - ${msg}`).join('\n')}\n` : '';
 }
 
+function containsNewTests(files) {
+    const testPattern = /(test_|spec_|__tests__|_test|_tests|\.test|\.spec)/i;
+    const testDirectoryPattern = /[\\/]?(tests|test|__tests__)[\\/]/i;
+    const testKeywords = /describe\(|it\(|test\(|expect\(/i; // Common test keywords for JavaScript
+
+    for (const file of files) {
+        const { new_file, diff, new_content } = file;
+
+        // Check if the filename indicates it's a test file
+        if (testPattern.test(new_file) || testDirectoryPattern.test(new_file)) {
+            return true;
+        }
+
+        // Check if the diff or new content contains test-related code
+        if (testKeywords.test(diff) || testKeywords.test(new_content)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function extractUserAdditions(description) {
+    const match = description.match(/<!--- user additions --->([\s\S]*?)<!--- user additions end --->/);
+    return match ? match[1].trim() : '';
+  }
+
 // Generate PR description
-async function generatePRDescription(branch, pr, callback) {
-  if (process.env[__filename]) {
-    return callback(null, process.env[__filename]);
-  }
-
-  const commitTypes = parseCommitMessages(branch.commits.messages);
-
-  const addTests = branch.commits.messages.some(message => message.includes('test:')) ? 'X' : ' ';
-  const testedInDev = pr.comments.some(comment => comment.content.includes('/dev')) ? 'X' : ' ';
-
-  let jiraTicketInfo = '- [ ] Create JIRA ticket';
-  const jiraTicketMatch = pr.title.match(/LINBEE-\d+/) || branch.name.match(/LINBEE-\d+/);
-
-  if (jiraTicketMatch) {
-    jiraTicketInfo = `* [Jira Ticket](https://linearb.atlassian.net/browse/${jiraTicketMatch[0]})`;
-  } else if (pr.description.includes('[x] Create JIRA ticket') || pr.description.includes('[X] Create JIRA ticket')) {
-    try {
-      const includeFeatures = branch.commits.messages.some(msg => msg.includes('feat:'));
-      const includeBugs = branch.commits.messages.some(msg => msg.includes('fix:'));
-      const ticketType = includeFeatures ? 'Task' : includeBugs ? 'Bug' : 'Task';
-      const ticketUrl = await createJiraTicket(ticketType, pr.title, pr.url);
-      jiraTicketInfo = `* [Jira Ticket](${ticketUrl})`;
-    } catch (error) {
-      console.error('Failed to create JIRA ticket:', error);
+async function generatePRDescription(branch, pr, repo, source, callback) {
+    if (process.env[__filename]) {
+        return callback(null, process.env[__filename]);
     }
-  }
 
-  const additionalInfoSection = pr.description.match(/## Additional info[\s\S]*/);
+    const commitTypes = parseCommitMessages(branch.commits.messages);
 
-  const removeCreateJiraTicketIfCreated = (section) => {
-    if (jiraTicketInfo.includes('[Jira Ticket]')) {
-      return section
-        .replace('- [ ] Create JIRA ticket', '')
-        .replace('- [x] Create JIRA ticket', '')
-        .replace('- [X] Create JIRA ticket', '');
+    const addTests = containsNewTests(source.diff.files) ? 'X' : ' ';
+    const testedInDev = pr.comments.some(comment => comment.content.includes('/dev')) ? 'X' : ' ';
+    const codeApproved = pr.approvals > 0;
+
+    const createTicket = pr.description.includes('[X] Create Jira Ticket')
+    let newTicket = '';
+
+    if (createTicket) {
+        try {
+            const includeFeatures = branch.commits.messages.some(msg => msg.includes('feat:'));
+            const includeBugs = branch.commits.messages.some(msg => msg.includes('fix:'));
+            const ticketType = includeFeatures ? 'Task' : includeBugs ? 'Bug' : 'Task';
+            const ticketUrl = await createJiraTicket(ticketType, pr.title, pr.url);
+            newTicket = `[Jira Ticket](${ticketUrl})`;
+        } catch (error) {
+            console.error('Failed to create JIRA ticket:', error);
+        }
     }
-    return section;
-  };
 
-  const updatedAdditionalInfo = additionalInfoSection ? removeCreateJiraTicketIfCreated(additionalInfoSection[0]).trim() : '## Additional info';
+    const jiraTicketMatchInBranch = branch.name.match(/LINBEE-\d+/);
+    const jiraTicketMatchInTitle = pr.title.match(/LINBEE-\d+/);
+    const jiraTicketMatchInDescription = pr.description.match(/LINBEE-\d+/);
+    const jiraTicketExists = newTicket || jiraTicketMatchInBranch || jiraTicketMatchInTitle || jiraTicketMatchInDescription;
 
-  const result = `
-## Branch Details
-- **Base:** ${branch.base}
+    let gitstreamActions = '### Gitstream Available Actions';
+    if (!jiraTicketExists) {
+        gitstreamActions += '\n  - [ ] Create Jira Ticket *(check to create using gitStream)*';
+    } else if (!jiraTicketMatchInTitle) {
+        gitstreamActions += '\n  - [ ] Add Jira Ticket to PR title *(check to add using gitStream)*'
+    }
 
-## What changed ?
-${Object.entries(commitTypes).map(([type, commits]) => formatCommitSection(type, commits)).join('')}
+    const changes = Object.entries(commitTypes).map(([type, commits]) => formatCommitSection(type, commits)).join('');
+    const userAdditions = extractUserAdditions(pr.description);
 
-## Checklist
- - [${testedInDev}] Flow Tested on dev
- - [${addTests}] Add tests  
+    const result = `
+  <!--- Auto-generated by gitStream--->
+  # ${repo.name}
 
- ${updatedAdditionalInfo}
- ${(updatedAdditionalInfo.includes('Create JIRA ticket') || updatedAdditionalInfo.includes('[Jira Ticket]')) ? '' : jiraTicketInfo}
+  ### Summary
+  This pull request includes the following changes:
+  ${changes}
+  
+  ### Checklist
+  - [${testedInDev}] Tested in dev
+  - [${addTests}] Add tests
+  - [${codeApproved}] Code Reviewed and approved
+  - [${jiraTicketExists}] Attach Jira ticket ${newTicket ? `${newTicket} *created by gitStream*`:''}
+  
+  ${gitstreamActions}
+  ---
+  
+  *This PR description section was auto-generated by gitStream.*
+  
+  <!--- Auto-generated by gitStream end --->
+  
+  <!--- user additions --->
+  ${userAdditions}
+  <!--- user additions end --->
+  
 `;
 
-  process.env[__filename] = result.split('\n').join('\n            ');
-  return callback(null, process.env[__filename]);
+    process.env[__filename] = result.split('\n').join('\n            ');
+    return callback(null, process.env[__filename]);
 }
 
 module.exports = { filter: generatePRDescription, async: true };
