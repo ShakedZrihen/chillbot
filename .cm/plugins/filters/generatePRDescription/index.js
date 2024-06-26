@@ -75,7 +75,7 @@ async function createJiraTicket(ticketType, summary, description) {
         'Content-Type': 'application/json'
       }
     });
-
+    console.log({response});
     return `${getJiraUrl()}/browse/${response.data.key}`;
   } catch (error) {
     console.error('Error creating JIRA ticket:', error);
@@ -147,6 +147,8 @@ async function generatePRDescription(branch, pr, callback) {
     return section;
   };
 
+  const updatedAdditionalInfo = additionalInfoSection ? removeCreateJiraTicketIfCreated(additionalInfoSection[0]).trim() : '## Additional info';
+
   const result = `
 ## Branch Details
 - **Base:** ${branch.base}
@@ -158,8 +160,8 @@ ${Object.entries(commitTypes).map(([type, commits]) => formatCommitSection(type,
  - [${testedInDev}] Flow Tested on dev
  - [${addTests}] Add tests  
 
- ${additionalInfoSection ? removeCreateJiraTicketIfCreated(additionalInfoSection[0]).trim() : '## Additional info'}
- ${(additionalInfoSection && (additionalInfoSection[0].includes('Create JIRA ticket') || additionalInfoSection[0].includes('[Jira Ticket]'))) ? '' : jiraTicketInfo}
+ ${updatedAdditionalInfo}
+ ${(updatedAdditionalInfo.includes('Create JIRA ticket') || updatedAdditionalInfo.includes('[Jira Ticket]')) ? '' : jiraTicketInfo}
 `;
 
   process.env[__filename] = result.split('\n').join('\n            ');
