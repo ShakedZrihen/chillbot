@@ -6,8 +6,8 @@ automations:
       - action: update-title@v1
         args:
           concat_mode: prepend
-          title: "{{ pr.description | capture(regex=r/\b[A-Za-z]+-\d+\b/) }} | "
+          title: "{{ jira_ticket_in_desc }} | "
 
 has:
   jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
-  jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net/) }}
+jira_ticket_in_desc: {{ pr.description | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
