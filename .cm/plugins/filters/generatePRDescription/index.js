@@ -31,7 +31,7 @@ function generatePRDescription(branch, pr) {
 
   const addTests = branch.commits.messages.some(message => message.includes('test:')) ? 'X' : ' ';
   const testedInDev = pr.comments.some(comment => comment.content.includes('/dev')) ? 'X' : ' ';
-  const additionalInfoSection = text.match(/## Additional info[\s\S]*/);
+  const additionalInfoSection = pr.description.match(/## Additional info[\s\S]*/);
 
   const result = `
 ## Branch Details
