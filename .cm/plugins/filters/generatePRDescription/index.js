@@ -38,6 +38,10 @@ function createPayload(ticketType, summary, description) {
         customfield_10260: {
           "id": "10451",
           "value": "Dev",
+        },
+        customfield_10159: {
+          "id": "10198",
+          "value": "Production",
         }
       }),
       summary,
