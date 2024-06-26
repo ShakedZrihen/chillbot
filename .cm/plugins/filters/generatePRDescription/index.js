@@ -21,7 +21,7 @@ async function createJiraTicket(ticketType, summary, description) {
   try {
     const response = await axios.post(apiEndpoint, payload, {
       headers: {
-        'Authorization': `Basic ${Buffer.from(`email@example.com:${authToken}`).toString('base64')}`, // Replace with your actual email and token
+        'Authorization': `Basic ${Buffer.from(`shaked@linearb.io:${authToken}`).toString('base64')}`, // Replace with your actual email and token
         'Content-Type': 'application/json'
       }
     });
