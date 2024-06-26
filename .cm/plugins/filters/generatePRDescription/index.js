@@ -35,7 +35,7 @@ async function createJiraTicket(ticketType, summary, description) {
             "content": [
               {
                 "type": "text",
-                "text": description
+                "text": description + '\n/:\\ Created by gitStream'
               }
             ]
           }
