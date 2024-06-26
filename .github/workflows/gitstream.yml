@@ -39,6 +39,7 @@ jobs:
       WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
       SHAKED: ${{ secrets.SHAKED }}
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
     steps:
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v2
