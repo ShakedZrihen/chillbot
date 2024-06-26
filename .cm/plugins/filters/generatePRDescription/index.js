@@ -145,7 +145,7 @@ ${Object.entries(commitTypes).map(([type, commits]) => formatCommitSection(type,
  - [${testedInDev}] Flow Tested on dev
  - [${addTests}] Add tests  
 
- ${additionalInfoSection ? removeCreateJiraTicketIfCreated(additionalInfoSection[0].trim()) : '## Additional info'}
+ ${additionalInfoSection ? removeCreateJiraTicketIfCreated(additionalInfoSection[0]).trim() : '## Additional info'}
  ${((additionalInfoSection && additionalInfoSection[0].includes('Create JIRA ticket')) || additionalInfoSection[0].includes('[Jira Ticket]')) ? '' : jiraTicketInfo}
 `;
 
