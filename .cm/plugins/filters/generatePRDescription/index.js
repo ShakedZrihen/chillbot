@@ -31,6 +31,12 @@ function generatePRDescription(branch, pr) {
 
   const addTests = branch.commits.messages.some(message => message.includes('test:')) ? 'X' : ' ';
   const testedInDev = pr.comments.some(comment => comment.content.includes('/dev')) ? 'X' : ' ';
+  
+  const jiraTicketMatch = pr.title.match(/LINBEE-\d+/) || branch.name.match(/LINBEE-\d+/);
+  const jiraTicketInfo = jiraTicketMatch 
+    ? `* [Jira Ticket](https://linearb.atlassian.net/browse/${jiraTicketMatch[0]})`
+    : '- [ ] Create JIRA ticket';
+  
   const additionalInfoSection = pr.description.match(/## Additional info[\s\S]*/);
 
   const result = `
@@ -46,13 +52,12 @@ ${Object.entries(commitTypes)
  - [${testedInDev}] Flow Tested on dev
  - [${addTests}] Add tests  
 
-${additionalInfoSection ? additionalInfoSection : '## Additional info'}
+${additionalInfoSection ? additionalInfoSection[0] : '## Additional info'}
 
+${jiraTicketInfo}
 `;
   process.env[__filename] = result.split('\n').join('\n            ');
   return process.env[__filename];
-
-
 }
 
 module.exports = generatePRDescription;
