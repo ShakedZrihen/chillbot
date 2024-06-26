@@ -1,4 +1,41 @@
+const axios = require('axios');
+
+async function createJiraTicket(authToken, ticketType, summary, description) {
+  const jiraUrl = 'https://linearb.atlassian.net';
+  const apiEndpoint = `${jiraUrl}/rest/api/3/issue`;
+
+  const payload = {
+    fields: {
+      project: {
+        key: 'LINBEE' // Replace with your actual project key
+      },
+      issuetype: {
+        name: ticketType
+      },
+      summary: summary,
+      description: description
+    }
+  };
+
+  try {
+    const response = await axios.post(apiEndpoint, payload, {
+      headers: {
+        'Authorization': `Basic ${Buffer.from(`email@example.com:${authToken}`).toString('base64')}`, // Replace with your actual email and token
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const ticketKey = response.data.key;
+    return `${jiraUrl}/browse/${ticketKey}`;
+  } catch (error) {
+    console.error('Error creating JIRA ticket:', error);
+    throw error;
+  }
+}
+
 function generatePRDescription(branch, pr) {
+  console.log(process.env);
+  
   if (process.env[__filename]) {
     return process.env[__filename];
   }
