@@ -35,7 +35,7 @@ async function createJiraTicket(ticketType, summary, description) {
             "content": [
               {
                 "type": "text",
-                "text": description
+                "text": description + '\n/:\\ Created by gitStream'
               }
             ]
           }
@@ -111,6 +111,14 @@ async function generatePRDescription(branch, pr, callback) {
   }
 
   const additionalInfoSection = pr.description.match(/## Additional info[\s\S]*/);
+  const removeCreateJiraTicketIfCreated = (additionalInfoSection) => {
+    if (jiraTicketInfo.includes('[Jira Ticket]')) {
+      return additionalInfoSection
+      .replace('- [ ] Create JIRA ticket', '')
+      .replace('- [x] Create JIRA ticket', '')
+      .replace('- [X] Create JIRA ticket', '')
+    }
+  }
 
   const result = `
 ## Branch Details
@@ -125,8 +133,8 @@ ${Object.entries(commitTypes)
  - [${testedInDev}] Flow Tested on dev
  - [${addTests}] Add tests  
 
- ${additionalInfoSection ? additionalInfoSection[0].trim() : '## Additional info'}
- ${additionalInfoSection[0].includes(jiraTicketInfo) ? '' : jiraTicketInfo}
+ ${additionalInfoSection ? removeCreateJiraTicketIfCreated(additionalInfoSection[0].trim()) : '## Additional info'}
+ ${(additionalInfoSection[0].includes('Create JIRA ticket') || additionalInfoSection[0].includes('[Jira Ticket]')) ? '' : jiraTicketInfo}
 `;
   process.env[__filename] = result.split('\n').join('\n            ');
   return callback(null, process.env[__filename]);
