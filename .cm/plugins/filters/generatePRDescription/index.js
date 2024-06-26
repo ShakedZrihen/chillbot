@@ -49,7 +49,7 @@ function containsNewTests(files) {
 function extractUserAdditions(description) {
     const match = description.match(/<!--- user additions --->([\s\S]*?)<!--- user additions end --->/);
     return match ? match[1].trim() : '';
-  }
+}
 
 // Generate PR description
 async function generatePRDescription(branch, pr, repo, source, callback) {
@@ -63,7 +63,8 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
     const testedInDev = pr.comments.some(comment => comment.content.includes('/dev')) ? 'X' : ' ';
     const codeApproved = pr.approvals > 0 ? 'X' : ' ';
 
-    const createTicket = pr.description.includes('[X] Create Jira Ticket')
+    const createTicket = pr.description.includes('[X] Create Jira Ticket') || pr.description.includes('[x] Create Jira Ticket');
+
     let newTicket = '';
 
     if (createTicket) {
@@ -73,6 +74,7 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
             const ticketType = includeFeatures ? 'Task' : includeBugs ? 'Bug' : 'Task';
             const ticketUrl = await createJiraTicket(ticketType, pr.title, pr.url);
             newTicket = `[Jira Ticket](${ticketUrl})`;
+            console.log({ newTicket });
         } catch (error) {
             console.error('Failed to create JIRA ticket:', error);
         }
@@ -105,7 +107,7 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
   - [${testedInDev}] Tested in dev
   - [${addTests}] Add tests
   - [${codeApproved}] Code Reviewed and approved
-  - [${jiraTicketExists}] Attach Jira ticket ${newTicket ? `${newTicket} *created by gitStream*`:''}
+  - [${jiraTicketExists}] Attach Jira ticket ${newTicket ? `${newTicket} *created by gitStream*` : ''}
   
   ${gitstreamActions}
   ---
