@@ -99,8 +99,8 @@ ${Object.entries(commitTypes)
  - [${testedInDev}] Flow Tested on dev
  - [${addTests}] Add tests  
 
-${additionalInfoSection ? additionalInfoSection : '## Additional info'}
-${jiraTicketInfo}
+${additionalInfoSection ? additionalInfoSection.trim() : '## Additional info'}
+${additionalInfoSection.includes(jiraTicketInfo) ? '' : jiraTicketInfo}
 `;
   process.env[__filename] = result.split('\n').join('\n            ');
   return process.env[__filename];
