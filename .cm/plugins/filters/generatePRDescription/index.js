@@ -45,8 +45,8 @@ ${Object.entries(commitTypes)
  - [${testedInDev}] Flow Tested on dev
  - [${addTests}] Add tests  
   `;
-  process.env[__filename] = result;
-  return result;
+  process.env[__filename] = result.split('\n').join('\n            ');
+  return process.env[__filename];
 
 }
 
