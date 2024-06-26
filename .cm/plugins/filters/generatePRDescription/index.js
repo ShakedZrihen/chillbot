@@ -34,9 +34,9 @@ async function createJiraTicket(ticketType, summary, description) {
   }
 }
 
-async function generatePRDescription(branch, pr) {
+async function generatePRDescription(branch, pr, callback) {
   if (process.env[__filename]) {
-    return process.env[__filename];
+    return callback(null, process.env[__filename]);
   }
 
   const commitTypes = {
@@ -103,7 +103,7 @@ ${Object.entries(commitTypes)
  ${additionalInfoSection[0].includes(jiraTicketInfo) ? '' : jiraTicketInfo}
 `;
   process.env[__filename] = result.split('\n').join('\n            ');
-  return process.env[__filename];
+  return callback(null, process.env[__filename]);
 }
 
 module.exports = { filter: generatePRDescription, async: true };
