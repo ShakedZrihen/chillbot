@@ -31,7 +31,8 @@ function generatePRDescription(branch, pr) {
   
   const addTests = branch.commits.messages.some(message => message.includes('test:')) ? 'X' : ' ';
   const testedInDev = pr.comments.some(comment => comment.content.includes('/dev')) ? 'X' : ' ';
-  console.log( { description: pr.description } );
+  const additionalInfoSection = text.match(/## Additional info[\s\S]*/);
+
   const result = `
 ## Branch Details
 - **Base:** ${branch.base}
@@ -48,6 +49,7 @@ ${Object.entries(commitTypes)
   process.env[__filename] = result.split('\n').join('\n            ');
   return process.env[__filename];
 
+${additionalInfoSection ? additionalInfoSection: '## Additional info'}
 }
 
 module.exports = generatePRDescription;
