@@ -5,4 +5,3 @@ hi!
 - [X] hello world
 - [X] test
 - [ ] why
-- [ ] hello world
