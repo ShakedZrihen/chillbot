@@ -6,5 +6,5 @@ automations:
       - action: update-description@v1
         args:
           description: |
-            {{ branch | generatePRDescription(pr) | indent(12, true}}
+            {{ branch | generatePRDescription(pr)}
 
