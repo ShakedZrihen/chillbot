@@ -1,0 +1,13 @@
+automations:
+  add_jira_to_title:
+    if:
+      - {{ jira_ticket_in_desc and (not has.jira_ticket_in_title) }}
+    run:
+      - action: update-title@v1
+        args:
+          concat_mode: prepend
+          title: "{{ pr.description | capture(regex=r/\b[A-Za-z]+-\d+\b/) }} | "
+
+has:
+  jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+  jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
