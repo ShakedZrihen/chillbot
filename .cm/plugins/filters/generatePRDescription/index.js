@@ -100,7 +100,7 @@ ${Object.entries(commitTypes)
  - [${addTests}] Add tests  
 
 ${additionalInfoSection ? additionalInfoSection : '## Additional info'}
-${jiraTicketInfo}
+${additionalInfoSection.includes(jiraTicketInfo) ? '' : jiraTicketInfo}
 `;
   process.env[__filename] = result.split('\n').join('\n            ');
   return process.env[__filename];
