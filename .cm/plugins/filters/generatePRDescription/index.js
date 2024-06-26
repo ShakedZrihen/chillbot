@@ -65,7 +65,8 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
 
     const createTicket = pr.description.includes('[X] Create Jira Ticket') || pr.description.includes('[x] Create Jira Ticket');
 
-    let newTicket = pr.description.match(/\[Jira Ticket\][^\n]*\*created by gitStream\*/g)[0] ?? '';
+    const matchedTicketCreatedByGitstream = pr.description.match(/\[Jira Ticket\][^\n]*\*created by gitStream\*/g);
+    let newTicket = matchedTicketCreatedByGitstream ? matchedTicketCreatedByGitstream[0] : '';
 
     if (createTicket) {
         try {
