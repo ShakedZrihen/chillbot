@@ -146,7 +146,7 @@ ${Object.entries(commitTypes).map(([type, commits]) => formatCommitSection(type,
  - [${addTests}] Add tests  
 
  ${additionalInfoSection ? removeCreateJiraTicketIfCreated(additionalInfoSection[0]).trim() : '## Additional info'}
- ${((additionalInfoSection && additionalInfoSection[0].includes('Create JIRA ticket')) || additionalInfoSection[0].includes('[Jira Ticket]')) ? '' : jiraTicketInfo}
+ ${(additionalInfoSection && (additionalInfoSection[0].includes('Create JIRA ticket') ||  additionalInfoSection[0].includes('[Jira Ticket]'))) ? '' : jiraTicketInfo}
 `;
 
   process.env[__filename] = result.split('\n').join('\n            ');
