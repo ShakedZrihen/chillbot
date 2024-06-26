@@ -1,8 +1,9 @@
 const axios = require('axios');
 
-async function createJiraTicket(authToken, ticketType, summary, description) {
+async function createJiraTicket(ticketType, summary, description) {
   const jiraUrl = 'https://linearb.atlassian.net';
   const apiEndpoint = `${jiraUrl}/rest/api/3/issue`;
+  const authToken = process.env.JIRA_API_TOKEN;
 
   const payload = {
     fields: {
@@ -12,8 +13,8 @@ async function createJiraTicket(authToken, ticketType, summary, description) {
       issuetype: {
         name: ticketType
       },
-      summary: summary,
-      description: description
+      summary,
+      description
     }
   };
 
@@ -33,9 +34,7 @@ async function createJiraTicket(authToken, ticketType, summary, description) {
   }
 }
 
-function generatePRDescription(branch, pr) {
-  console.log(process.env);
-  
+async function generatePRDescription(branch, pr) {
   if (process.env[__filename]) {
     return process.env[__filename];
   }
@@ -68,12 +67,23 @@ function generatePRDescription(branch, pr) {
 
   const addTests = branch.commits.messages.some(message => message.includes('test:')) ? 'X' : ' ';
   const testedInDev = pr.comments.some(comment => comment.content.includes('/dev')) ? 'X' : ' ';
-  
+
+  let jiraTicketInfo = '- [ ] Create JIRA ticket';
   const jiraTicketMatch = pr.title.match(/LINBEE-\d+/) || branch.name.match(/LINBEE-\d+/);
-  const jiraTicketInfo = jiraTicketMatch 
-    ? `* [Jira Ticket](https://linearb.atlassian.net/browse/${jiraTicketMatch[0]})`
-    : '- [ ] Create JIRA ticket';
-  
+  if (jiraTicketMatch) {
+    jiraTicketInfo = `* [Jira Ticket](https://linearb.atlassian.net/browse/${jiraTicketMatch[0]})`;
+  } else if (pr.description.includes('[x] Create JIRA ticket') || pr.description.includes('[X] Create JIRA ticket')) {
+    try {
+      const includeFeatures = branch.commits.messages.some(msg => msg.includes('feat:'));
+      const includeBugs = branch.commits.messages.some(msg => msg.includes('fix:'));
+      const ticketType = includeFeatures ? 'Task' : includeBugs ? 'Bug' : 'Task';
+      const ticketUrl = await createJiraTicket(ticketType, pr.title, pr.url);
+      jiraTicketInfo = `* [Jira Ticket](${ticketUrl})`;
+    } catch (error) {
+      console.error('Failed to create JIRA ticket:', error);
+    }
+  }
+
   const additionalInfoSection = pr.description.match(/## Additional info[\s\S]*/);
 
   const result = `
@@ -89,12 +99,11 @@ ${Object.entries(commitTypes)
  - [${testedInDev}] Flow Tested on dev
  - [${addTests}] Add tests  
 
-${additionalInfoSection ? additionalInfoSection[0] : '## Additional info'}
-
+${additionalInfoSection ? additionalInfoSection : '## Additional info'}
 ${jiraTicketInfo}
 `;
   process.env[__filename] = result.split('\n').join('\n            ');
   return process.env[__filename];
 }
 
-module.exports = generatePRDescription;
+module.exports = { filter: generatePRDescription, async: true };
