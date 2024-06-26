@@ -21,7 +21,7 @@ function parseCommitMessages(messages) {
 
 // Format commit section
 function formatCommitSection(type, commits) {
-    return commits.length ? `- **${type}:**\n${commits.map(msg => `  - ${msg}`).join('\n')}\n` : '';
+    return commits.length ? `- **${type}:**\n${commits.map(msg => `     - ${msg}`).join('\n')}\n` : '';
 }
 
 function containsNewTests(files) {
