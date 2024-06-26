@@ -1,4 +1,4 @@
-function generatePRDescription(branch, pr, owner, repo) {
+function generatePRDescription(branch, pr) {
   if (process.env[__filename]) {
     return process.env[__filename];
   }
@@ -17,15 +17,12 @@ function generatePRDescription(branch, pr, owner, repo) {
     other: []
   };
 
-  branch.commits.messages.filter(message => !message.includes('Merge branch')).forEach((message, index) => {
+  branch.commits.messages.filter(message => !message.includes('Merge branch')).forEach(message => {
     const match = message.match(/^(feat|fix|chore|docs|style|refactor|perf|test|build|ci):/);
-    const commitSHA = branch.commits.shas[index];
-    const commitURL = `https://github.com/${owner}/${repo}/commit/${commitSHA}`;
-    const formattedMessage = `${message.replace(`${match ? match[1] : 'other'}:`, '').trim()} ([view commit](${commitURL}))`;
     if (match) {
-      commitTypes[match[1]].push(formattedMessage);
+      commitTypes[match[1]].push(message.replace(`${match[1]}:`, '').trim());
     } else {
-      commitTypes.other.push(formattedMessage);
+      commitTypes.other.push(message);
     }
   });
 
@@ -50,6 +47,7 @@ ${Object.entries(commitTypes)
   `;
   process.env[__filename] = result.split('\n').join('\n            ');
   return process.env[__filename];
+
 }
 
 module.exports = generatePRDescription;
