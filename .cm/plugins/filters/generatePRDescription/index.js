@@ -31,6 +31,15 @@ function createPayload(ticketType, summary, description) {
       ...(ticketType === 'Task' && {
         customfield_10258: { "id": "10439", "value": "New Value" }
       }),
+      ...(ticketType === 'Bug' && {
+        priority: {
+          id: "3"
+        },
+        customfield_10260: {
+          "id": "10451",
+          "value": "Dev",
+        }
+      }),
       summary,
       description: {
         "version": 1,
@@ -146,7 +155,7 @@ ${Object.entries(commitTypes).map(([type, commits]) => formatCommitSection(type,
  - [${addTests}] Add tests  
 
  ${additionalInfoSection ? removeCreateJiraTicketIfCreated(additionalInfoSection[0]).trim() : '## Additional info'}
- ${(additionalInfoSection && (additionalInfoSection[0].includes('Create JIRA ticket') ||  additionalInfoSection[0].includes('[Jira Ticket]'))) ? '' : jiraTicketInfo}
+ ${(additionalInfoSection && (additionalInfoSection[0].includes('Create JIRA ticket') || additionalInfoSection[0].includes('[Jira Ticket]'))) ? '' : jiraTicketInfo}
 `;
 
   process.env[__filename] = result.split('\n').join('\n            ');
