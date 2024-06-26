@@ -90,9 +90,9 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
     if (jiraTicketExists === ' ') {
         gitstreamActions += '\n  - [ ] Create Jira Ticket *(check to create using gitStream)*';
     } else if (!jiraTicketMatchInTitle && !addJiraToTitle) {
-        gitstreamActions += '\n  - [ ] Add Jira Ticket to PR title *(check to add using gitStream)*'
+        gitstreamActions += '\n  - [ ] Add Jira Ticket to PR title *(check to add using gitStream)*';
     } else {
-        gitstreamActions += '\n  No Available Actions'
+        gitstreamActions += '\n    No Available Actions\n';
     }
 
     const changes = Object.entries(commitTypes).map(([type, commits]) => formatCommitSection(type, commits)).join('');
