@@ -65,7 +65,7 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
 
     const createTicket = pr.description.includes('[X] Create Jira Ticket') || pr.description.includes('[x] Create Jira Ticket');
 
-    let newTicket = '';
+    let newTicket = pr.description.match(/\[Jira Ticket\][^\n]*\*created by gitStream\*/g)[0] ?? '';
 
     if (createTicket) {
         try {
@@ -73,7 +73,7 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
             const includeBugs = branch.commits.messages.some(msg => msg.includes('fix:'));
             const ticketType = includeFeatures ? 'Task' : includeBugs ? 'Bug' : 'Task';
             const ticketUrl = await createJiraTicket(ticketType, pr.title, pr.url);
-            newTicket = `[Jira Ticket](${ticketUrl})`;
+            newTicket = `[Jira Ticket](${ticketUrl}) *created by gitStream*`;
             console.log({ newTicket });
         } catch (error) {
             console.error('Failed to create JIRA ticket:', error);
@@ -109,7 +109,7 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
   - [${testedInDev}] Tested in dev
   - [${addTests}] Add tests
   - [${codeApproved}] Code Reviewed and approved
-  - [${jiraTicketExists}] Attach Jira ticket ${newTicket ? `${newTicket} *created by gitStream*` : ''}
+  - [${jiraTicketExists}] Attach Jira ticket ${newTicket ? `${newTicket}` : ''}
   
   ${gitstreamActions}
   ---
