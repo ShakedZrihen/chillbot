@@ -61,7 +61,7 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
 
     const addTests = containsNewTests(source.diff.files) ? 'X' : ' ';
     const testedInDev = pr.comments.some(comment => comment.content.includes('/dev')) ? 'X' : ' ';
-    const codeApproved = pr.approvals > 0;
+    const codeApproved = pr.approvals > 0 ? 'X' : ' ';
 
     const createTicket = pr.description.includes('[X] Create Jira Ticket')
     let newTicket = '';
@@ -81,10 +81,10 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
     const jiraTicketMatchInBranch = branch.name.match(/LINBEE-\d+/);
     const jiraTicketMatchInTitle = pr.title.match(/LINBEE-\d+/);
     const jiraTicketMatchInDescription = pr.description.match(/LINBEE-\d+/);
-    const jiraTicketExists = newTicket || jiraTicketMatchInBranch || jiraTicketMatchInTitle || jiraTicketMatchInDescription;
+    const jiraTicketExists = newTicket || jiraTicketMatchInBranch || jiraTicketMatchInTitle || jiraTicketMatchInDescription ? 'X' : ' ';
 
     let gitstreamActions = '### Gitstream Available Actions';
-    if (!jiraTicketExists) {
+    if (jiraTicketExists === ' ') {
         gitstreamActions += '\n  - [ ] Create Jira Ticket *(check to create using gitStream)*';
     } else if (!jiraTicketMatchInTitle) {
         gitstreamActions += '\n  - [ ] Add Jira Ticket to PR title *(check to add using gitStream)*'
