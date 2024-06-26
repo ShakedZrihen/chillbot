@@ -80,7 +80,7 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
             console.error('Failed to create JIRA ticket:', error);
         }
     }
-
+    const addJiraToTitle = pr.description.includes('[x] Add Jira Ticket to PR title') || pr.description.includes('[X] Add Jira Ticket to PR title');
     const jiraTicketMatchInBranch = branch.name.match(/LINBEE-\d+/);
     const jiraTicketMatchInTitle = pr.title.match(/LINBEE-\d+/);
     const jiraTicketMatchInDescription = pr.description.match(/LINBEE-\d+/);
@@ -89,7 +89,7 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
     let gitstreamActions = '### Gitstream Available Actions';
     if (jiraTicketExists === ' ') {
         gitstreamActions += '\n  - [ ] Create Jira Ticket *(check to create using gitStream)*';
-    } else if (!jiraTicketMatchInTitle) {
+    } else if (!jiraTicketMatchInTitle && !addJiraToTitle) {
         gitstreamActions += '\n  - [ ] Add Jira Ticket to PR title *(check to add using gitStream)*'
     } else {
         gitstreamActions += '\n/:\\ No Available Actions /:\\'
