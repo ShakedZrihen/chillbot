@@ -31,7 +31,7 @@ function generatePRDescription(branch, pr) {
   
   const addTests = branch.commits.messages.some(message => message.includes('test:')) ? 'X' : ' ';
   const testedInDev = pr.comments.some(comment => comment.content.includes('/dev')) ? 'X' : ' ';
-  console.log({addTests});
+  console.log( { description: pr.description } );
   const result = `
 ## Branch Details
 - **Base:** ${branch.base}
