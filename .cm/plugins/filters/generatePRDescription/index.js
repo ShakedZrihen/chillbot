@@ -1,6 +1,14 @@
 const axios = require('axios');
 
 async function createJiraTicket(ticketType, summary, description) {
+  const MAP_ISSUE_TO_ID = {
+    Task: {
+      "id": "10026",
+    },
+    Bug: {
+      "id": "10028",
+    }
+  }
   const jiraUrl = 'https://linearb.atlassian.net';
   const apiEndpoint = `${jiraUrl}/rest/api/3/issue`;
   const authToken = process.env.JIRA_API_TOKEN;
@@ -8,13 +16,31 @@ async function createJiraTicket(ticketType, summary, description) {
   const payload = {
     fields: {
       project: {
-        key: 'LINBEE' // Replace with your actual project key
+        "id": "10060" // LINBEE
       },
-      issuetype: {
-        name: ticketType
-      },
+      issuetype: MAP_ISSUE_TO_ID[ticketType] ?? MAP_ISSUE_TO_ID.Task,
+      ...(ticketType === 'Task' && {
+        customfield_10258: {
+          "id": "10439",
+          "value": "New Value"
+        }
+      }),
       summary,
-      description
+      description: {
+        "version": 1,
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": description
+              }
+            ]
+          }
+        ]
+      }
     }
   };
 
