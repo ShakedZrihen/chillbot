@@ -91,7 +91,7 @@ async function generatePRDescription(branch, pr, repo, source, callback) {
     } else if (!jiraTicketMatchInTitle) {
         gitstreamActions += '\n  - [ ] Add Jira Ticket to PR title *(check to add using gitStream)*'
     } else {
-        gitstreamActions += '/:\\ No Available Actions /:\\'
+        gitstreamActions += '\n/:\\ No Available Actions /:\\'
     }
 
     const changes = Object.entries(commitTypes).map(([type, commits]) => formatCommitSection(type, commits)).join('');
