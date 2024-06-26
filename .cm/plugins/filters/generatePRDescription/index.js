@@ -28,7 +28,7 @@ function generatePRDescription(branch, pr) {
 
   const formatCommitSection = (type, commits) =>
     commits.length ? `- **${type}:**\n${commits.map(msg => `  - ${msg}`).join('\n')}\n` : '';
-  
+
   const addTests = branch.commits.messages.some(message => message.includes('test:')) ? 'X' : ' ';
   const testedInDev = pr.comments.some(comment => comment.content.includes('/dev')) ? 'X' : ' ';
   const additionalInfoSection = text.match(/## Additional info[\s\S]*/);
@@ -45,11 +45,14 @@ ${Object.entries(commitTypes)
 ## Checklist
  - [${testedInDev}] Flow Tested on dev
  - [${addTests}] Add tests  
-  `;
+
+${additionalInfoSection ? additionalInfoSection : '## Additional info'}
+
+`;
   process.env[__filename] = result.split('\n').join('\n            ');
   return process.env[__filename];
 
-${additionalInfoSection ? additionalInfoSection: '## Additional info'}
+
 }
 
 module.exports = generatePRDescription;
