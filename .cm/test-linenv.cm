@@ -1,0 +1,23 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  detect_complex_release:
+    if:
+      - {{ branch.diff.files_metadata | filter(attr='original_file', regex=r/changes.yml/) | map(attr='additions') | sum > 2 }}
+    run:
+      - action: require-reviewers@v1
+        args:
+          reviewers: [orielz, ariel-linearb]
+      - action: add-label@v1
+        args:
+          label: complex_release
+          color: '#4A249D'
+      - action: add-comment@v1
+        args:
+          comment: |
+              This PR contains changes in 3+ services, please consider:
+              1. split this PR into multiple releases 
+              2. wait for manager approval (@orielz or @ariel-linearb)
